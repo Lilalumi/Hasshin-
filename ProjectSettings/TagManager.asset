@@ -44,6 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 321048561
+    locked: 0
+  - name: OthersLayer
+    uniqueID: 926036339
+    locked: 0
   - name: EnemyLayer
     uniqueID: 1498942587
     locked: 0
