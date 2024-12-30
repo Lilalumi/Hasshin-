@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2947072697903287007}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +54,7 @@ MonoBehaviour:
   maxSpeed: 6
   speedAugment: 0.2
   hitsToRedirect: 5
+  damage: 10
 --- !u!114 &-6921967625778771217
 MonoBehaviour:
   m_ObjectHideFlags: 0

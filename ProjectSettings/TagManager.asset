@@ -8,6 +8,7 @@ TagManager:
   - Core
   - Paddle
   - Enemy
+  - Ball
   layers:
   - Default
   - TransparentFX
