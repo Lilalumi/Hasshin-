@@ -4,6 +4,7 @@ public class EnemyBehavior : MonoBehaviour
 {
     private Transform core; // El núcleo hacia el cual el enemigo se moverá
     public float speed = 2f; // Velocidad del enemigo, editable desde el inspector
+    public GameObject gameOverPrefab; // Prefab del Canvas de Game Over
 
     void Start()
     {
@@ -40,6 +41,16 @@ public class EnemyBehavior : MonoBehaviour
         // Verifica si colisiona con el Core
         if (collision.gameObject.CompareTag("Core"))
         {
+            // Instanciar el prefab del Canvas de Game Over
+            if (gameOverPrefab != null)
+            {
+                Instantiate(gameOverPrefab, Vector3.zero, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogError("No se asignó el prefab de Game Over en el inspector.");
+            }
+
             Debug.Log("GAME OVER!"); // Imprime el mensaje en la consola
             Time.timeScale = 0; // Detiene el tiempo en el juego
         }

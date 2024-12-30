@@ -6,6 +6,7 @@ public class BallBehavior : MonoBehaviour
     public float maxSpeed = 15f; // Velocidad máxima de la pelota
     public float speedAugment = 1f; // Incremento de velocidad al golpear la paleta
     public int hitsToRedirect = 5; // Golpes consecutivos necesarios para redirigir al núcleo
+    public int damage = 10; // Daño que la pelota inflige, editable desde el inspector
 
     private float currentSpeed; // Velocidad actual de la pelota
     private Rigidbody2D rb;
@@ -80,6 +81,13 @@ public class BallBehavior : MonoBehaviour
             {
                 borderHitCount = 0;
             }
+        }
+
+        // Aplica daño si el objeto colisionado tiene un script de salud
+        Health targetHealth = collision.gameObject.GetComponent<Health>();
+        if (targetHealth != null)
+        {
+            targetHealth.TakeDamage(damage);
         }
     }
 

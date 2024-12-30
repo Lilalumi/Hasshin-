@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6363157751834182356}
   - component: {fileID: 8569543573429199867}
+  - component: {fileID: -4894978872234111828}
   - component: {fileID: 4993867624094483367}
   - component: {fileID: 1643314865525937414}
   - component: {fileID: 7062433733414700460}
   m_Layer: 6
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +49,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
+  gameOverPrefab: {fileID: 7213506498767116994, guid: aab8b679e7121c049956040df1255759, type: 3}
+--- !u!114 &-4894978872234111828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030931877034422116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36426c925816cb34ba25c519aa461adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  effectDuration: 0.2
+  sizeAugment: 0.2
 --- !u!212 &4993867624094483367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,7 +104,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1498942587
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 179a0fe482d378f4884a24044027aaaa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
