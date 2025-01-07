@@ -55,6 +55,7 @@ MonoBehaviour:
   speedAugment: 0.2
   hitsToRedirect: 5
   damage: 10
+  destroyOnCoreCollision: 0
 --- !u!114 &-6921967625778771217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!96 &-5872604905399846962
 TrailRenderer:
   serializedVersion: 3

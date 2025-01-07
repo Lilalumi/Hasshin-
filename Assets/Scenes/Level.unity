@@ -2799,7 +2799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 10
-  powerBehavior: {fileID: 11400000, guid: a2d00689bfd805e46b9dc6a8d59852cf, type: 2}
+  powerBehavior: {fileID: 11400000, guid: f1caf6534572b4e4ead40fa48b23d3c5, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

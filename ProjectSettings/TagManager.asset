@@ -9,6 +9,7 @@ TagManager:
   - Paddle
   - Enemy
   - Ball
+  - Missile
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Border
   - Paddle
   - Post Processing
-  - 
+  - Missile
   - 
   - 
   - 
