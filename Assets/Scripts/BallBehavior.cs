@@ -7,6 +7,7 @@ public class BallBehavior : MonoBehaviour
     public float speedAugment = 1f; // Incremento de velocidad al golpear la paleta
     public int hitsToRedirect = 5; // Golpes consecutivos necesarios para redirigir al núcleo
     public int damage = 10; // Daño que la pelota inflige, editable desde el inspector
+    public bool destroyOnCoreCollision = false; // Toggle para habilitar/deshabilitar el comportamiento de desinstanciar
 
     private float currentSpeed; // Velocidad actual de la pelota
     private Rigidbody2D rb;
@@ -71,6 +72,13 @@ public class BallBehavior : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Core"))
         {
+            // Verifica si debe desinstanciar la pelota
+            if (destroyOnCoreCollision)
+            {
+                Destroy(gameObject);
+                return; // Salir del método para evitar acciones posteriores
+            }
+
             // Reinicia la velocidad al golpear el núcleo
             currentSpeed = initialSpeed;
         }

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal; // Asegúrate de usar el espacio de nombres correcto para Light 2D
+using UnityEngine.Rendering.Universal; // Para Light 2D
 
 public class BallShockwave : MonoBehaviour
 {
@@ -43,7 +43,11 @@ public class BallShockwave : MonoBehaviour
         if (shockwavePrefab != null)
         {
             GameObject shockwave = Instantiate(shockwavePrefab, collision.contacts[0].point, Quaternion.identity);
-            shockwave.transform.parent = null;
+
+            // Asigna el Shockwave como hijo de la pelota que lo generó
+            shockwave.transform.SetParent(transform);
+
+            // Configura el Shockwave para destruirse al finalizar la animación
             StartCoroutine(HandleShockwave(shockwave));
         }
 
@@ -75,7 +79,11 @@ public class BallShockwave : MonoBehaviour
             yield return null;
         }
 
-        Destroy(shockwave);
+        // Asegura que el objeto Shockwave se destruya al finalizar la animación
+        if (shockwave != null)
+        {
+            Destroy(shockwave);
+        }
     }
 
     private System.Collections.IEnumerator HandleLightPulse()
