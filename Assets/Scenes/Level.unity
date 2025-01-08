@@ -839,7 +839,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -5.046154, y: 0.096496046}
-  - {x: -4.863533, y: 0.008982822}
+  - {x: -4.8652196, y: 0.0046122186}
   - {x: -4.8513746, y: 0.3656712}
   - {x: -4.791769, y: 0.79001015}
   - {x: -4.7073016, y: 1.1776894}
@@ -941,7 +941,7 @@ EdgeCollider2D:
   - {x: -4.8544736, y: -0.39285958}
   - {x: -4.854608, y: -0.2388985}
   - {x: -4.862846, y: -0.23294057}
-  - {x: -4.8636665, y: -0.01790721}
+  - {x: -4.865015, y: -0.0039403047}
   - {x: -5.0293055, y: -0.06301963}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -2799,7 +2799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 10
-  powerBehavior: {fileID: 11400000, guid: f1caf6534572b4e4ead40fa48b23d3c5, type: 2}
+  powerBehavior: {fileID: 11400000, guid: 6583dfe2db7c52147bd67c505e67ecb3, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

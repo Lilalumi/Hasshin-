@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1a03e60dfffd24c9545a486165622e, type: 3}
-  m_Name: Ball Power Missile
+  m_Script: {fileID: 11500000, guid: f160b899b6a0a2c48828801da8b31086, type: 3}
+  m_Name: Ball Power Orbital
   m_EditorClassIdentifier: 
-  missilePrefab: {fileID: 634668977633617600, guid: 2b3dc2096b5e02448a98adb144533d81, type: 3}
-  missileCount: 6
-  initialFlightTime: 0.5
-  initialSpeed: 1
+  asteroidPrefab: {fileID: 3065356535666247442, guid: f6ae510e934c8c048b86b4946d5d0473, type: 3}
+  range: 0.6
+  amount: 3
+  orbitSpeed: 5
+  duration: 5
