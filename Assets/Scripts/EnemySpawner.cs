@@ -95,4 +95,10 @@ public class EnemySpawner : MonoBehaviour
 
         return true; // Si todas las distancias son válidas, la posición es válida
     }
+
+    public bool HasPendingWaves()
+    {
+        return currentWave < maxWaves; // Devuelve true si aún hay oleadas pendientes
+    }
+
 }

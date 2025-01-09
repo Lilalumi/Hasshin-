@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4993867624094483367}
   - component: {fileID: 1643314865525937414}
   - component: {fileID: 7062433733414700460}
+  - component: {fileID: 5869744413412350641}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -189,3 +190,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &5869744413412350641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030931877034422116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ce81b8093388549956b08aa111c18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataShardsOnDeath: 5
+  dataShardPrefab: {fileID: 7474657057844744984, guid: 6b6d4f548f56116438b8cd3a0c064e0c, type: 3}
+  floatTime: 0.5
+  floatRadius: 0.5

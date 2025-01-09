@@ -16,7 +16,7 @@ MonoBehaviour:
   numberOfBalls: 2
   directionRange: 90
   spawnOffset: 0.2
-  disappearAfterTime: 0
-  lifetime: 10
+  disappearAfterTime: 1
+  lifetime: 9
   disappearAfterCollisions: 0
   maxCollisions: 3

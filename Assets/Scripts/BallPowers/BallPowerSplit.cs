@@ -16,49 +16,52 @@ public class BallPowerSplit : BallPowerBase
 
     public override void Activate(GameObject ballController)
     {
-        // Encuentra el objeto BallSpawnPosition como hijo del Paddle
-        GameObject paddle = GameObject.FindGameObjectWithTag("Paddle");
-        Transform ballSpawnPosition = paddle.transform.Find("BallSpawnPosition");
+        // Encuentra todas las pelotas activas
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
 
-        if (ballSpawnPosition == null)
+        if (balls.Length == 0)
         {
-            Debug.LogError("No se encontró BallSpawnPosition como hijo del Paddle.");
+            Debug.LogWarning("No se encontraron pelotas activas para aplicar el poder.");
             return;
         }
 
-        for (int i = 0; i < numberOfBalls; i++)
+        foreach (GameObject ball in balls)
         {
-            // Calcula un offset circular para distribuir las pelotas alrededor del punto de spawn
-            float angleOffset = (360f / numberOfBalls) * i; // Espaciado angular entre pelotas
-            Vector3 offset = Quaternion.Euler(0, 0, angleOffset) * Vector3.up * spawnOffset;
-
-            // Instancia nuevas pelotas en la posición de BallSpawnPosition más el offset
-            GameObject newBall = Instantiate(ballPrefab, ballSpawnPosition.position + offset, Quaternion.identity);
-
-            // Asigna la nueva pelota como hija del BallController
-            newBall.transform.parent = ballController.transform;
-
-            // Calcula una dirección aleatoria dentro del rango definido
-            float randomAngle = Random.Range(-directionRange / 2f, directionRange / 2f);
-            Vector2 direction = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;
-
-            // Asigna la dirección aleatoria como velocidad inicial de la pelota
-            Rigidbody2D newBallRb = newBall.GetComponent<Rigidbody2D>();
-            if (newBallRb != null)
+            for (int i = 0; i < numberOfBalls; i++)
             {
-                newBallRb.velocity = direction * newBallRb.velocity.magnitude;
-            }
+                // Calcula un offset circular para distribuir las pelotas alrededor de la pelota actual
+                float angleOffset = (360f / numberOfBalls) * i; // Espaciado angular entre pelotas
+                Vector3 offset = Quaternion.Euler(0, 0, angleOffset) * Vector3.up * spawnOffset;
 
-            // Agregar el comportamiento de desaparición
-            BallLifetimeHandler lifetimeHandler = newBall.AddComponent<BallLifetimeHandler>();
-            if (disappearAfterTime)
-            {
-                lifetimeHandler.SetLifetime(lifetime);
-            }
+                // Instancia nuevas pelotas alrededor de la posición de la pelota actual
+                Vector3 spawnPosition = ball.transform.position + offset;
+                GameObject newBall = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
 
-            if (disappearAfterCollisions)
-            {
-                lifetimeHandler.SetMaxCollisions(maxCollisions);
+                // Asigna la nueva pelota como hija del BallController
+                newBall.transform.parent = ballController.transform;
+
+                // Calcula una dirección aleatoria dentro del rango definido
+                float randomAngle = Random.Range(-directionRange / 2f, directionRange / 2f);
+                Vector2 direction = Quaternion.Euler(0, 0, randomAngle) * Vector2.up;
+
+                // Asigna la dirección aleatoria como velocidad inicial de la pelota
+                Rigidbody2D newBallRb = newBall.GetComponent<Rigidbody2D>();
+                if (newBallRb != null)
+                {
+                    newBallRb.velocity = direction * newBallRb.velocity.magnitude;
+                }
+
+                // Agregar el comportamiento de desaparición
+                BallLifetimeHandler lifetimeHandler = newBall.AddComponent<BallLifetimeHandler>();
+                if (disappearAfterTime)
+                {
+                    lifetimeHandler.SetLifetime(lifetime);
+                }
+
+                if (disappearAfterCollisions)
+                {
+                    lifetimeHandler.SetMaxCollisions(maxCollisions);
+                }
             }
         }
     }
