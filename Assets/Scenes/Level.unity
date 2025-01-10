@@ -2272,7 +2272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 10
-  powerBehavior: {fileID: 11400000, guid: c87f23e370debc448810af40a2026789, type: 2}
+  powerBehavior: {fileID: 11400000, guid: b6dfc03458cb9fe4186610ad18cf15ad, type: 2}
 --- !u!1 &1558038509
 GameObject:
   m_ObjectHideFlags: 0
