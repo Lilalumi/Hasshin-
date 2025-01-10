@@ -751,6 +751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 27752960}
   - component: {fileID: 27752959}
+  - component: {fileID: 27752961}
   m_Layer: 0
   m_Name: IntroItems
   m_TagString: Untagged
@@ -806,6 +807,20 @@ Transform:
   - {fileID: 1007198097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &27752961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27752958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff051558f6719ce4fbf59e9c09fd0159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 27752959}
+  mainMenuSceneName: MainMenu
 --- !u!1 &29626822
 GameObject:
   m_ObjectHideFlags: 0

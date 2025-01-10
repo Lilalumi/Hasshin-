@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections; // Importante para IEnumerator
 
 public class VictoryController : MonoBehaviour
 {
     [Header("Dependencies")]
-    public EnemySpawner enemySpawner; // Referencia al script EnemySpawner
-    public GameObject victoryPrefab; // Prefab del Canvas de Victoria
+    public EnemySpawner enemySpawner;
+    public GameObject victoryPrefab;
+    public string mainMenuSceneName = "MainMenu";
 
-    private bool victoryTriggered = false; // Bandera para evitar que la victoria se procese múltiples veces
+    private bool victoryTriggered = false;
 
     void Update()
     {
@@ -18,29 +21,25 @@ public class VictoryController : MonoBehaviour
 
     private void CheckVictoryCondition()
     {
-        // Verifica si quedan enemigos activos
         GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (activeEnemies.Length > 0)
         {
-            return; // Todavía hay enemigos activos
+            return;
         }
 
-        // Verifica si quedan oleadas por instanciarse
         if (enemySpawner != null && enemySpawner.HasPendingWaves())
         {
-            return; // Todavía hay oleadas pendientes
+            return;
         }
 
-        // Si no hay enemigos activos ni pendientes, muestra la pantalla de victoria
         TriggerVictory();
     }
 
     private void TriggerVictory()
     {
-        victoryTriggered = true; // Marca la victoria como procesada
+        victoryTriggered = true;
         Debug.Log("¡Victoria! No quedan más enemigos.");
 
-        // Instanciar el prefab de Victoria
         if (victoryPrefab != null)
         {
             Instantiate(victoryPrefab, Vector3.zero, Quaternion.identity);
@@ -50,7 +49,15 @@ public class VictoryController : MonoBehaviour
             Debug.LogError("No se asignó el prefab de Victoria en el inspector.");
         }
 
-        // Detener el tiempo del juego
         Time.timeScale = 0;
+
+        StartCoroutine(ReturnToMainMenu());
+    }
+
+    private IEnumerator ReturnToMainMenu()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }

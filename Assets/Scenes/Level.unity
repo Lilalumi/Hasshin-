@@ -1905,6 +1905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 1686033544}
   victoryPrefab: {fileID: 7213506498767116994, guid: d7e6d1ccae6be0549814c6666d0a6be8, type: 3}
+  mainMenuSceneName: MainMenu
 --- !u!1 &1310178189
 GameObject:
   m_ObjectHideFlags: 0

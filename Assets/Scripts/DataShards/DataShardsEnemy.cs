@@ -44,9 +44,15 @@ public class DataShardsEnemy : MonoBehaviour
             return;
         }
 
+        DataShardsController controller = FindObjectOfType<DataShardsController>();
+
+        if (controller == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < dataShardsOnDeath; i++)
         {
-            // Genera una posición aleatoria dentro del radio
             Vector3 randomOffset = new Vector3(
                 Random.Range(-floatRadius, floatRadius),
                 Random.Range(-floatRadius, floatRadius),
@@ -55,15 +61,18 @@ public class DataShardsEnemy : MonoBehaviour
 
             Vector3 spawnPosition = transform.position + randomOffset;
 
-            // Instancia el Data Shard
             GameObject dataShard = Instantiate(dataShardPrefab, spawnPosition, Quaternion.identity);
 
-            // Configura el comportamiento del Data Shard
+            // Registra el DataShard en el controlador
+            controller.RegisterDataShard(dataShard);
+
             DataShardBehavior shardBehavior = dataShard.GetComponent<DataShardBehavior>();
             if (shardBehavior != null)
             {
-                shardBehavior.Initialize(); // Llama al método Initialize sin parámetros
+                shardBehavior.Initialize();
             }
         }
     }
+
+
 }

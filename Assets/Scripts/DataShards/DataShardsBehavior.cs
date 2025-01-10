@@ -21,11 +21,19 @@ public class DataShardBehavior : MonoBehaviour
         }
         else if (!isQuitting)
         {
-            Debug.LogError("No se encontró un objeto con el tag 'Core' en la escena.");
+            Debug.LogWarning("No se encontró un objeto con el tag 'Core' en la escena. El DataShard no se moverá.");
         }
 
         // Comienza el movimiento inmediato hacia el núcleo
-        StartCoroutine(MoveToCore());
+        if (coreTransform != null)
+        {
+            StartCoroutine(MoveToCore());
+        }
+        else
+        {
+            // Si no hay núcleo, destruye inmediatamente el objeto
+            Destroy(gameObject);
+        }
     }
 
     private void OnApplicationQuit()
