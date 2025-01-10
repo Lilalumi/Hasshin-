@@ -2815,6 +2815,22 @@ PrefabInstance:
       propertyPath: core
       value: 
       objectReference: {fileID: 978115802}
+    - target: {fileID: 7733153549639090923, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+      propertyPath: speed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733153549639090923, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+      propertyPath: stretchAmount
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733153549639090923, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+      propertyPath: enableAnimations
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733153549639090923, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+      propertyPath: animationDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8854427722008490526, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
       propertyPath: powerBehavior
       value: 
