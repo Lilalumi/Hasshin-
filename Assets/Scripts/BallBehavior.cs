@@ -5,11 +5,13 @@ public class BallBehavior : MonoBehaviour
     public float initialSpeed = 5f; // Velocidad inicial de la pelota, editable desde el inspector
     public float maxSpeed = 15f; // Velocidad máxima de la pelota
     public float speedAugment = 1f; // Incremento de velocidad al golpear la paleta
+    public float accelerationRate = 0.1f; // Tasa de aceleración progresiva
     public int hitsToRedirect = 5; // Golpes consecutivos necesarios para redirigir al núcleo
     public int damage = 10; // Daño que la pelota inflige, editable desde el inspector
     public bool destroyOnCoreCollision = false; // Toggle para habilitar/deshabilitar el comportamiento de desinstanciar
 
     private float currentSpeed; // Velocidad actual de la pelota
+    private float targetSpeed; // Velocidad hacia la que se acelera progresivamente
     private Rigidbody2D rb;
     private Transform core; // Núcleo desde el cual la pelota se alejará
     private int borderHitCount = 0; // Contador de golpes al Border
@@ -31,8 +33,9 @@ public class BallBehavior : MonoBehaviour
         // Obtiene el Rigidbody2D del objeto
         rb = GetComponent<Rigidbody2D>();
 
-        // Inicializa la velocidad actual
+        // Inicializa la velocidad actual y el objetivo de velocidad
         currentSpeed = initialSpeed;
+        targetSpeed = initialSpeed;
 
         // Calcula la dirección inicial asegurando que no sea tangencial
         Vector2 direction = (transform.position - core.position).normalized;
@@ -45,11 +48,15 @@ public class BallBehavior : MonoBehaviour
         rb.velocity = direction * currentSpeed;
     }
 
+    void FixedUpdate()
+    {
+        // Ajusta la velocidad progresivamente hacia la velocidad objetivo
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelerationRate);
+        rb.velocity = rb.velocity.normalized * currentSpeed;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ajusta la velocidad después de una colisión para mantenerla constante
-        rb.velocity = rb.velocity.normalized * currentSpeed;
-
         if (collision.gameObject.CompareTag("Border"))
         {
             // Incrementa el contador si el objeto es un Border
@@ -63,11 +70,11 @@ public class BallBehavior : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
-            // Incrementa la velocidad al golpear la paleta
-            currentSpeed += speedAugment;
-            if (currentSpeed > maxSpeed)
+            // Ajusta inmediatamente el objetivo de velocidad al golpear la paleta
+            targetSpeed += speedAugment;
+            if (targetSpeed > maxSpeed)
             {
-                currentSpeed = maxSpeed; // Limita la velocidad al máximo permitido
+                targetSpeed = maxSpeed; // Limita la velocidad al máximo permitido
             }
         }
         else if (collision.gameObject.CompareTag("Core"))
@@ -80,7 +87,7 @@ public class BallBehavior : MonoBehaviour
             }
 
             // Reinicia la velocidad al golpear el núcleo
-            currentSpeed = initialSpeed;
+            targetSpeed = initialSpeed;
         }
         else
         {
