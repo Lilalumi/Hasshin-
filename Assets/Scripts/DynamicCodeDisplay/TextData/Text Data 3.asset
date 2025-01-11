@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646c6b769fd7da5439215dc13e984256, type: 3}
+  m_Name: Text Data 3
+  m_EditorClassIdentifier: 
+  content: "######################\r\n# BALL SYSTEM - HASSHIN!\r\n# Code by: FutureArcade
+    Games\r\n# Language: Python\r\n# Theme: Physics-based gameplay mechanics\r\n######################\r\n\r\n#
+    Import essential libraries\r\nimport math\r\nimport random\r\n\r\n# Constants
+    for ball mechanics\r\nMAX_BALL_SPEED = 20.0\r\nMIN_BALL_SPEED = 5.0\r\nBALL_RADIUS
+    = 15.0\r\nARENA_BOUNDS = (800, 600)  # Width x Height\r\n\r\n# Ball colors and
+    effects\r\nBALL_TYPES = {\r\n    \"Standard\": {\"color\": \"#FFFFFF\", \"effect\":
+    \"None\"},\r\n    \"Fire\": {\"color\": \"#FF4500\", \"effect\": \"Burn Damage\"},\r\n   
+    \"Ice\": {\"color\": \"#00FFFF\", \"effect\": \"Slow Enemies\"},\r\n    \"Electric\":
+    {\"color\": \"#FFD700\", \"effect\": \"Chain Lightning\"}\r\n}\r\n\r\n# Ball
+    class definition\r\nclass Ball:\r\n    \"\"\"Represents a ball in the game with
+    various properties.\"\"\"\r\n    def __init__(self, ball_type=\"Standard\"):\r\n       
+    self.ball_type = ball_type\r\n        self.color = BALL_TYPES[ball_type][\"color\"]\r\n       
+    self.effect = BALL_TYPES[ball_type][\"effect\"]\r\n        self.position = [random.randint(100,
+    700), random.randint(100, 500)]\r\n        self.velocity = [random.uniform(-10,
+    10), random.uniform(-10, 10)]\r\n        self.speed = random.uniform(MIN_BALL_SPEED,
+    MAX_BALL_SPEED)\r\n\r\n    def move(self):\r\n        \"\"\"Update the ball's
+    position based on velocity and speed.\"\"\"\r\n        self.position[0] += self.velocity[0]
+    * self.speed * 0.1\r\n        self.position[1] += self.velocity[1] * self.speed
+    * 0.1\r\n        self.handle_bounds()\r\n\r\n    def handle_bounds(self):\r\n       
+    \"\"\"Bounce the ball off the arena bounds.\"\"\"\r\n        if self.position[0]
+    - BALL_RADIUS < 0 or self.position[0] + BALL_RADIUS > ARENA_BOUNDS[0]:\r\n           
+    self.velocity[0] = -self.velocity[0]\r\n        if self.position[1] - BALL_RADIUS
+    < 0 or self.position[1] + BALL_RADIUS > ARENA_BOUNDS[1]:\r\n            self.velocity[1]
+    = -self.velocity[1]\r\n\r\n    def apply_effect(self, target):\r\n        \"\"\"Apply
+    the ball's special effect to a target.\"\"\"\r\n        return f\"Applying {self.effect}
+    to {target}!\"\r\n\r\n    def display_status(self):\r\n        \"\"\"Display
+    ball properties.\"\"\"\r\n        return f\"Ball Type: {self.ball_type}, Position:
+    {self.position}, Effect: {self.effect}\"\r\n\r\n# BallManager to control multiple
+    balls\r\nclass BallManager:\r\n    \"\"\"Handles the creation and management
+    of multiple balls.\"\"\"\r\n    def __init__(self):\r\n        self.balls = []\r\n\r\n   
+    def spawn_ball(self, ball_type=\"Standard\"):\r\n        ball = Ball(ball_type)\r\n       
+    self.balls.append(ball)\r\n        return f\"Spawned a {ball_type} ball!\"\r\n\r\n   
+    def update_balls(self):\r\n        for ball in self.balls:\r\n            ball.move()\r\n\r\n   
+    def apply_effects(self, target):\r\n        results = []\r\n        for ball
+    in self.balls:\r\n            results.append(ball.apply_effect(target))\r\n       
+    return results\r\n\r\n    def display_all_status(self):\r\n        for ball in
+    self.balls:\r\n            print(ball.display_status())\r\n\r\n# System Initialization\r\ndef
+    initialize_ball_system():\r\n    \"\"\"Setup routine for the ball system.\"\"\"\r\n   
+    print(\"Initializing Ball System...\")\r\n    ball_manager = BallManager()\r\n\r\n   
+    # Spawn initial balls\r\n    print(ball_manager.spawn_ball(\"Fire\"))\r\n   
+    print(ball_manager.spawn_ball(\"Ice\"))\r\n    print(ball_manager.spawn_ball(\"Electric\"))\r\n\r\n   
+    # Display initial status\r\n    ball_manager.display_all_status()\r\n\r\n   
+    # Simulate ball updates\r\n    for _ in range(5):\r\n        ball_manager.update_balls()\r\n       
+    print(\"Updated ball positions:\")\r\n        ball_manager.display_all_status()\r\n\r\n   
+    # Apply effects to a dummy target\r\n    target = \"Enemy-01\"\r\n    print(\"Applying
+    effects to target:\")\r\n    effects = ball_manager.apply_effects(target)\r\n   
+    for effect in effects:\r\n        print(effect)\r\n\r\n# Main Routine\r\nif __name__
+    == \"__main__\":\r\n    initialize_ball_system()\r\n"

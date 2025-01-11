@@ -355,10 +355,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1012813327}
-  folder: {fileID: 102900000, guid: 5663f232b0e76664cbaccbdff5a06a04, type: 3}
   typingSpeed: 0.001
-  delayBetweenScripts: 2
+  delayBetweenTexts: 2
   maxLines: 10
+  textDataArray:
+  - {fileID: 11400000, guid: ed8598dba491b9543aa6b27354db36a7, type: 2}
+  - {fileID: 11400000, guid: 86f1acafa5fa36a469b4f161aa6faa9c, type: 2}
+  - {fileID: 11400000, guid: 48a2c593eab304e49ad5ceb313de8d3d, type: 2}
+  - {fileID: 11400000, guid: 4b5fdd7f33d7c014e87bf135f75fb5d5, type: 2}
+  folder: {fileID: 102900000, guid: 7d46bf0a29399b445941b22781352f77, type: 3}
 --- !u!114 &1012813327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,10 +580,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1409896431}
-  folder: {fileID: 102900000, guid: 97e05939c81bff54b8c9b7b66c042041, type: 3}
   typingSpeed: 0.001
-  delayBetweenScripts: 2
+  delayBetweenTexts: 2
   maxLines: 10
+  textDataArray:
+  - {fileID: 11400000, guid: ed8598dba491b9543aa6b27354db36a7, type: 2}
+  - {fileID: 11400000, guid: 86f1acafa5fa36a469b4f161aa6faa9c, type: 2}
+  - {fileID: 11400000, guid: 48a2c593eab304e49ad5ceb313de8d3d, type: 2}
+  - {fileID: 11400000, guid: 4b5fdd7f33d7c014e87bf135f75fb5d5, type: 2}
+  folder: {fileID: 102900000, guid: 7d46bf0a29399b445941b22781352f77, type: 3}
 --- !u!114 &1409896431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,10 +1182,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 1900310960}
-  folder: {fileID: 102900000, guid: b23006d0306090e46bc6ebffe4af83d5, type: 3}
   typingSpeed: 0.001
-  delayBetweenScripts: 1
+  delayBetweenTexts: 2
   maxLines: 10
+  textDataArray:
+  - {fileID: 11400000, guid: ed8598dba491b9543aa6b27354db36a7, type: 2}
+  - {fileID: 11400000, guid: 86f1acafa5fa36a469b4f161aa6faa9c, type: 2}
+  - {fileID: 11400000, guid: 48a2c593eab304e49ad5ceb313de8d3d, type: 2}
+  - {fileID: 11400000, guid: 4b5fdd7f33d7c014e87bf135f75fb5d5, type: 2}
+  folder: {fileID: 102900000, guid: 7d46bf0a29399b445941b22781352f77, type: 3}
 --- !u!114 &1900310960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,10 +1548,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 2031619652}
-  folder: {fileID: 102900000, guid: e67f439ac4a936142b8bf90e49c43dae, type: 3}
   typingSpeed: 0.001
-  delayBetweenScripts: 2
+  delayBetweenTexts: 2
   maxLines: 10
+  textDataArray:
+  - {fileID: 11400000, guid: ed8598dba491b9543aa6b27354db36a7, type: 2}
+  - {fileID: 11400000, guid: 86f1acafa5fa36a469b4f161aa6faa9c, type: 2}
+  - {fileID: 11400000, guid: 48a2c593eab304e49ad5ceb313de8d3d, type: 2}
+  - {fileID: 11400000, guid: 4b5fdd7f33d7c014e87bf135f75fb5d5, type: 2}
+  folder: {fileID: 102900000, guid: 7d46bf0a29399b445941b22781352f77, type: 3}
 --- !u!114 &2031619652
 MonoBehaviour:
   m_ObjectHideFlags: 0
