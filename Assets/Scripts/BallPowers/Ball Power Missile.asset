@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ball Power Missile
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 634668977633617600, guid: 2b3dc2096b5e02448a98adb144533d81, type: 3}
-  missileCount: 6
+  missileCount: 4
   initialFlightTime: 0.5
   initialSpeed: 1
