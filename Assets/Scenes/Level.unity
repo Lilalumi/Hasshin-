@@ -4430,7 +4430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 10
-  powerBehavior: {fileID: 11400000, guid: f1caf6534572b4e4ead40fa48b23d3c5, type: 2}
+  powerBehavior: {fileID: 11400000, guid: 6583dfe2db7c52147bd67c505e67ecb3, type: 2}
 --- !u!1001 &3855383865342742260
 PrefabInstance:
   m_ObjectHideFlags: 0

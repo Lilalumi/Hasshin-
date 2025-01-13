@@ -408,6 +408,7 @@ MonoBehaviour:
   glowIntensity: 1
   flashIntensity: 5
   flashDuration: 0.2
+  impactParticles: {fileID: 8045936929786119918, guid: a119eab3eff86b647bf82bf1a325f9e2, type: 3}
 --- !u!96 &6395330476789437764
 TrailRenderer:
   serializedVersion: 3

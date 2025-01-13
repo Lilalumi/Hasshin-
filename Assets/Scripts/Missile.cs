@@ -28,6 +28,7 @@ public class Missile : MonoBehaviour
     private Vector2 currentDirection; // Dirección actual del misil
     private List<Transform> detectedEnemies = new List<Transform>(); // Lista de enemigos detectados
     private TrailRenderer trailRenderer; // Referencia al Trail Renderer
+    public GameObject impactEffectPrefab; // Prefab del efecto de impacto
 
     void Start()
     {
@@ -95,7 +96,10 @@ public class Missile : MonoBehaviour
             {
                 enemyHealth.TakeDamage(damage);
             }
-
+            if (impactEffectPrefab != null)
+                {
+                    Instantiate(impactEffectPrefab, collision.contacts[0].point, Quaternion.identity);
+                }
             // Destruye el misil
             Destroy(gameObject);
         }

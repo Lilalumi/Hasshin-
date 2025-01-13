@@ -362,6 +362,7 @@ MonoBehaviour:
   intensityDefault: 1
   intensityCollision: 1.5
   intensityEnemyCollision: 3
+  impactEffectPrefab: {fileID: 8684634255837181260, guid: a119eab3eff86b647bf82bf1a325f9e2, type: 3}
 --- !u!50 &7393930301579057343
 Rigidbody2D:
   serializedVersion: 4

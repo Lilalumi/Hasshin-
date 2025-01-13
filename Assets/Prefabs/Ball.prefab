@@ -53,9 +53,12 @@ MonoBehaviour:
   initialSpeed: 2
   maxSpeed: 6
   speedAugment: 0.2
+  accelerationRate: 0.1
   hitsToRedirect: 5
   damage: 10
   destroyOnCoreCollision: 0
+  impactEffectEnemyPrefab: {fileID: 8684634255837181260, guid: a119eab3eff86b647bf82bf1a325f9e2, type: 3}
+  impactEffectPaddlePrefab: {fileID: 8684634255837181260, guid: d196ce5458566b841928eede0ad9c2ec, type: 3}
 --- !u!114 &-6921967625778771217
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class Asteroid : MonoBehaviour
     [Header("Damage Settings")]
     public int damage = 10; // Daño que hará al impactar con un enemigo
     private bool canDealDamage = true; // Controla si puede hacer daño nuevamente
+    private bool isContactingEnemy = false; // Controla si ya está en contacto con un enemigo
 
     [Header("Light Settings")]
     public Light2D asteroidLight; // Componente Light 2D
@@ -18,12 +19,21 @@ public class Asteroid : MonoBehaviour
     public float flashIntensity = 5f; // Intensidad de luz al colisionar
     public float flashDuration = 0.2f; // Duración del flash
 
+    [Header("Particle Settings")]
+    public ParticleSystem impactParticles; // Prefab de partículas para el impacto
+
     void Start()
     {
         // Configura la luz inicial
         if (asteroidLight != null)
         {
             asteroidLight.intensity = glowIntensity;
+        }
+
+        // Asegúrate de que las partículas estén desactivadas al inicio
+        if (impactParticles != null && impactParticles.isPlaying)
+        {
+            impactParticles.Stop();
         }
     }
 
@@ -49,8 +59,11 @@ public class Asteroid : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && canDealDamage)
+        if (collision.CompareTag("Enemy") && !isContactingEnemy)
         {
+            // Marca que está en contacto con un enemigo
+            isContactingEnemy = true;
+
             // Aplica daño al enemigo
             Health enemyHealth = collision.GetComponent<Health>();
             if (enemyHealth != null)
@@ -58,21 +71,34 @@ public class Asteroid : MonoBehaviour
                 enemyHealth.TakeDamage(damage);
             }
 
+            // Activa el efecto de partículas
+            PlayImpactParticles();
+
             // Activa el flash de la luz
             if (asteroidLight != null)
             {
                 StartCoroutine(FlashLight());
             }
-
-            // Desactiva temporalmente la capacidad de hacer daño
-            canDealDamage = false;
-            Invoke(nameof(ResetDamageCooldown), flashDuration); // Permite daño después del flash
         }
     }
 
-    private void ResetDamageCooldown()
+    void OnTriggerExit2D(Collider2D collision)
     {
-        canDealDamage = true;
+        if (collision.CompareTag("Enemy"))
+        {
+            // Resetea el estado al salir del contacto
+            isContactingEnemy = false;
+        }
+    }
+
+    private void PlayImpactParticles()
+    {
+        if (impactParticles != null)
+        {
+            // Reproduce las partículas en la posición actual del asteroide
+            impactParticles.transform.position = transform.position;
+            impactParticles.Play();
+        }
     }
 
     private System.Collections.IEnumerator FlashLight()

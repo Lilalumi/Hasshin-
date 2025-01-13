@@ -18,7 +18,7 @@ public class Pellet : MonoBehaviour
     public float intensityDefault = 1f; // Intensidad por defecto de la luz
     public float intensityCollision = 3f; // Intensidad de la luz al colisionar con algo
     public float intensityEnemyCollision = 5f; // Intensidad de la luz al colisionar con un enemigo
-
+    public GameObject impactEffectPrefab; // Prefab del efecto de impacto
     public void SetMaxDistance(float distance)
     {
         maxDistance = distance;
@@ -80,6 +80,10 @@ public class Pellet : MonoBehaviour
                 bounceCount++;
             }
             return;
+            if (impactEffectPrefab != null)
+            {
+                Instantiate(impactEffectPrefab, collision.contacts[0].point, Quaternion.identity);
+            }
         }
 
         // Verifica si el pellet puede rebotar tras colisionar con otro objeto
