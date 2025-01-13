@@ -5,7 +5,6 @@ public class PaddlePowerBump : PaddlePowerBase
 {
     public float bumpSpeed = 10f; // Velocidad del impulso
     public float bumpDistance = 2f; // Distancia que se aleja del Core
-
     public override void Activate(GameObject paddle)
     {
         Debug.Log("Paddle Power Bump activated!");

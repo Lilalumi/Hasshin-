@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314ca7c2b863e4c45be4576f63eda4d3, type: 3}
   m_Name: Paddle Power Clone
   m_EditorClassIdentifier: 
+  powerName: Clone Power
+  powerIcon: {fileID: 21300000, guid: 62208438fbe72d94fad78ddbebaacd14, type: 3}
   cloneDuration: 7
   cloneColor: {r: 0, g: 1, b: 0, a: 1}
   tweenDuration: 0.5

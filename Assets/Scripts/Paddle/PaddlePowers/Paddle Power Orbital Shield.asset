@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1686735518794b43a773026626bf19f, type: 3}
   m_Name: Paddle Power Orbital Shield
   m_EditorClassIdentifier: 
+  powerName: Shield Power
+  powerIcon: {fileID: 21300000, guid: 38ff603b7a095fc4bb8e9e0da7c7d9f9, type: 3}
   orbitalShieldPrefab: {fileID: 6089258231214618257, guid: 2cf5ecf3b868e6148891e0558e09dc39, type: 3}
   initialShieldCount: 3

@@ -7,7 +7,6 @@ public class PaddlePowerClone : PaddlePowerBase
     public Color cloneColor = Color.green; // Color de los clones
     public float tweenDuration = 0.5f; // Duración de los efectos de aparición y desaparición
     public int cloneCount = 1; // Número de clones
-
     public override void Activate(GameObject paddle)
     {
         Debug.Log("Paddle Power Clone activated!");

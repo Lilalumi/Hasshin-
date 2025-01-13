@@ -56,4 +56,10 @@ public class BallPower : MonoBehaviour
     {
         return coolDownTimeRemaining;
     }
+
+    // Método para obtener el ícono del poder
+    public Sprite GetPowerIcon()
+    {
+        return powerBehavior != null ? powerBehavior.powerIcon : null;
+    }
 }

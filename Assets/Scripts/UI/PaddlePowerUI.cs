@@ -7,6 +7,7 @@ public class PaddlePowerUI : MonoBehaviour
 {
     public Image powerCDPortrait; // Imagen de retrato del cooldown
     public Image powerCDReady; // Imagen que indica que el poder está listo
+    public Image powerIcon; // Imagen del ícono del poder
     public TextMeshProUGUI powerCDTimer; // Texto para mostrar el tiempo de cooldown restante
     public Light2D readyLight; // Light 2D para el efecto de parpadeo
 
@@ -14,6 +15,15 @@ public class PaddlePowerUI : MonoBehaviour
 
     private float coolDownTimeRemaining = 0f; // Tiempo restante del cooldown
     private bool isBlinking = false; // Bandera para evitar múltiples corrutinas de parpadeo
+
+    void Start()
+    {
+        if (paddlePower != null && paddlePower.powerBehavior != null)
+        {
+            // Asigna el ícono del poder al inicio
+            SetPowerIcon(paddlePower.powerBehavior.powerIcon);
+        }
+    }
 
     void Update()
     {
@@ -49,6 +59,12 @@ public class PaddlePowerUI : MonoBehaviour
                 StartBlinking();
             }
         }
+
+        // Asegura que el ícono se actualice si el poder cambia dinámicamente
+        if (paddlePower.powerBehavior != null)
+        {
+            SetPowerIcon(paddlePower.powerBehavior.powerIcon);
+        }
     }
 
     private string FormatTime(float time)
@@ -57,6 +73,15 @@ public class PaddlePowerUI : MonoBehaviour
         int seconds = Mathf.FloorToInt(time);
         int centiseconds = Mathf.FloorToInt((time - seconds) * 100);
         return $"{seconds:00}.{centiseconds:00}";
+    }
+
+    private void SetPowerIcon(Sprite icon)
+    {
+        if (powerIcon != null)
+        {
+            powerIcon.sprite = icon;
+            powerIcon.enabled = icon != null; // Oculta la imagen si no hay ícono asignado
+        }
     }
 
     private void StartBlinking()

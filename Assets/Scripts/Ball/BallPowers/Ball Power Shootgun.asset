@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816168cc5f249e947b76c08e890df870, type: 3}
   m_Name: Ball Power Shootgun
   m_EditorClassIdentifier: 
+  powerName: Shootgun Power
+  powerIcon: {fileID: 21300000, guid: e084b38d1714ce54e9a7cb7aaf53fc12, type: 3}
   pelletPrefab: {fileID: 3065356535666247442, guid: 4634704b5857e304a95e3e202331920f, type: 3}
   pelletCount: 5
   spreadRadius: 30

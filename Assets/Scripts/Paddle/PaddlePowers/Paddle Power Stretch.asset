@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e596f3afc93e6b4e947f238c1051b57, type: 3}
   m_Name: Paddle Power Stretch
   m_EditorClassIdentifier: 
+  powerName: Stretch Power
+  powerIcon: {fileID: 21300000, guid: 6e25a738f67f10c40b0b0c835913cf09, type: 3}
   stretchMultiplier: 2
   stretchDuration: 7
   tweenDuration: 0.5

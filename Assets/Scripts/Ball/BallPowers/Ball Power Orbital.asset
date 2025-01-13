@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f160b899b6a0a2c48828801da8b31086, type: 3}
   m_Name: Ball Power Orbital
   m_EditorClassIdentifier: 
+  powerName: Orbital Power
+  powerIcon: {fileID: 21300000, guid: 1a4d6caced71da648a69a8862b392175, type: 3}
   asteroidPrefab: {fileID: 3065356535666247442, guid: f6ae510e934c8c048b86b4946d5d0473, type: 3}
   range: 0.6
   amount: 3

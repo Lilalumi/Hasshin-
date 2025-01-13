@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9eb7fc863595f4e8f91b37fe7d8230, type: 3}
   m_Name: Paddle Power Magnet
   m_EditorClassIdentifier: 
+  powerName: Magnet Power
+  powerIcon: {fileID: 21300000, guid: e50bb2b85500a004d926be3d1df89711, type: 3}
   magnetDuration: 3

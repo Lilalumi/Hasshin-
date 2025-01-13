@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5aea47d7a94c844ca213feb04c7666e, type: 3}
   m_Name: Paddle Power Bump
   m_EditorClassIdentifier: 
+  powerName: Bump Power
+  powerIcon: {fileID: 21300000, guid: f0cab88a9a9175249a4f97c77a146377, type: 3}
   bumpSpeed: 5
   bumpDistance: 0.5

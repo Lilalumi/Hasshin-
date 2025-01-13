@@ -4,7 +4,6 @@ using UnityEngine;
 public class PaddlePowerMagnet : PaddlePowerBase
 {
     public float magnetDuration = 3f; // Duración del efecto magnético
-
     public override void Activate(GameObject paddle)
     {
         Debug.Log("Paddle Power Magnet activated!");

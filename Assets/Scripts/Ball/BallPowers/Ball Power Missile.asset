@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1a03e60dfffd24c9545a486165622e, type: 3}
   m_Name: Ball Power Missile
   m_EditorClassIdentifier: 
+  powerName: Missile
+  powerIcon: {fileID: 21300000, guid: dc6329b35b7fcee4b92460dc2add5527, type: 3}
   missilePrefab: {fileID: 634668977633617600, guid: 2b3dc2096b5e02448a98adb144533d81, type: 3}
   missileCount: 4
   initialFlightTime: 0.5
