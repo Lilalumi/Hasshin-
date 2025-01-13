@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac89e4b16848704caced3175767d797, type: 3}
+  m_Name: Ball Power Split
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 8461942488166412768, guid: 03bd8f3d3377c6d44a64b1eb3886eb58, type: 3}
+  numberOfBalls: 2
+  directionRange: 90
+  spawnOffset: 0.2
+  disappearAfterTime: 1
+  lifetime: 9
+  disappearAfterCollisions: 0
+  maxCollisions: 3
