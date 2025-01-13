@@ -14,11 +14,11 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        // Asegurarse de que solo hay un SoundManager
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Mantener el SoundManager entre escenas
+            DontDestroyOnLoad(gameObject); // Evita que el SoundManager se destruya
+            UpdateVolumes(); // Aplica los volúmenes iniciales al AudioSource
         }
         else
         {
@@ -28,6 +28,9 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        // Cargar volúmenes al iniciar
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", musicVolume);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", sfxVolume);
         UpdateVolumes();
     }
 
@@ -61,15 +64,17 @@ public class SoundManager : MonoBehaviour
         if (musicSource != null) musicSource.volume = musicVolume;
     }
 
-    public void SetSFXVolume(float volume)
-    {
-        sfxVolume = Mathf.Clamp01(volume);
-        UpdateVolumes();
-    }
-
     public void SetMusicVolume(float volume)
     {
         musicVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume); // Guardar configuración
+        UpdateVolumes();
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume); // Guardar configuración
         UpdateVolumes();
     }
 }
