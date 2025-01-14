@@ -5,6 +5,7 @@ public class PaddlePowerBump : PaddlePowerBase
 {
     public float bumpSpeed = 10f; // Velocidad del impulso
     public float bumpDistance = 2f; // Distancia que se aleja del Core
+
     public override void Activate(GameObject paddle)
     {
         Debug.Log("Paddle Power Bump activated!");
@@ -21,29 +22,40 @@ public class PaddlePowerBump : PaddlePowerBase
             yield break;
         }
 
-        Vector3 originalPosition = paddle.transform.position; // Posición inicial del Paddle
-        Vector3 direction = (paddle.transform.position - core.transform.position).normalized; // Dirección opuesta al Core
-        Vector3 targetPosition = originalPosition + direction * bumpDistance; // Posición objetivo alejada del Core
+        // Guarda la posición y rotación originales del Paddle
+        Vector3 originalPosition = paddle.transform.position;
+        Quaternion originalRotation = paddle.transform.rotation;
+
+        // Calcula la dirección del impulso
+        Vector3 direction = (paddle.transform.position - core.transform.position).normalized;
+        Vector3 targetPosition = originalPosition + direction * bumpDistance;
 
         // Fase 1: Mover hacia afuera
         float elapsedTime = 0f;
-        while (elapsedTime < bumpDistance / bumpSpeed)
+        float duration = bumpDistance / bumpSpeed;
+        while (elapsedTime < duration)
         {
-            paddle.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / (bumpDistance / bumpSpeed));
+            float progress = elapsedTime / duration;
+            paddle.transform.position = Vector3.Lerp(originalPosition, targetPosition, progress);
+            paddle.transform.rotation = originalRotation; // Mantiene la rotación original
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         paddle.transform.position = targetPosition;
+        paddle.transform.rotation = originalRotation;
 
         // Fase 2: Volver a la posición original
         elapsedTime = 0f;
-        while (elapsedTime < bumpDistance / bumpSpeed)
+        while (elapsedTime < duration)
         {
-            paddle.transform.position = Vector3.Lerp(targetPosition, originalPosition, elapsedTime / (bumpDistance / bumpSpeed));
+            float progress = elapsedTime / duration;
+            paddle.transform.position = Vector3.Lerp(targetPosition, originalPosition, progress);
+            paddle.transform.rotation = originalRotation; // Mantiene la rotación original
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         paddle.transform.position = originalPosition;
+        paddle.transform.rotation = originalRotation;
 
         Debug.Log("Paddle Power Bump completed!");
     }

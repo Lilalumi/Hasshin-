@@ -6266,7 +6266,7 @@ PrefabInstance:
     - target: {fileID: 8854427722008490526, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
       propertyPath: powerBehavior
       value: 
-      objectReference: {fileID: 11400000, guid: c87f23e370debc448810af40a2026789, type: 2}
+      objectReference: {fileID: 11400000, guid: 4697c1d5fbb7b5243816c2d9469596f7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
