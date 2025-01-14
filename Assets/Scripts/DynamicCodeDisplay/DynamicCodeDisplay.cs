@@ -69,7 +69,6 @@ public class DynamicCodeDisplay : MonoBehaviour
         }
 
         textDataArray = loadedTextData.ToArray(); // Actualiza el array con los resultados
-        Debug.Log($"Se cargaron {textDataArray.Length} objetos TextData desde la carpeta.");
     }
 #endif
 

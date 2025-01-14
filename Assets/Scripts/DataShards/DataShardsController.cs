@@ -22,6 +22,11 @@ public class DataShardsController : MonoBehaviour
         Debug.Log("Escena cambiada. Eliminando todos los Data Shards activos.");
         DestroyAllDataShards();
     }
+    public void SetDataShards(int amount)
+    {
+        dataShardsCollected = amount;
+        Debug.Log($"Data Shards inicializados a: {dataShardsCollected}");
+    }
 
     public void AddDataShards(int amount)
     {
