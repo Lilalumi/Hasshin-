@@ -19,19 +19,17 @@ public class DataShardsController : MonoBehaviour
 
     private void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("Escena cambiada. Eliminando todos los Data Shards activos.");
         DestroyAllDataShards();
     }
+
     public void SetDataShards(int amount)
     {
         dataShardsCollected = amount;
-        Debug.Log($"Data Shards inicializados a: {dataShardsCollected}");
     }
 
     public void AddDataShards(int amount)
     {
         dataShardsCollected += amount;
-        Debug.Log($"Data Shards recolectados: {dataShardsCollected}");
     }
 
     public int GetDataShards()

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   effectDuration: 0.1
-  sizeAugment: 1.1
+  sizeAugment: 1.05
   dissolveMaterial: {fileID: 2100000, guid: cb50b69a82e6ed9419798e468563cf5d, type: 2}
   dissolveAmountProperty: _DissolveAmount
   destructionEffectPrefab: {fileID: 8684634255837181260, guid: 931e911bb3f80ef4c8bcc6613165ee85, type: 3}

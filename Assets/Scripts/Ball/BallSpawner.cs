@@ -13,7 +13,6 @@ public class BallSpawner : MonoBehaviour
         // Verifica que las referencias necesarias estén asignadas
         if (ballPrefab == null || ballSpawnPosition == null || ballController == null)
         {
-            Debug.LogError("BallSpawner: Falta una referencia al prefab, BallSpawnPosition o BallController.");
             return;
         }
 

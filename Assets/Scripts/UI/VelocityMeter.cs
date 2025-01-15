@@ -30,7 +30,6 @@ public class VelocityMeter : MonoBehaviour
         // Valida si la referencia al BallSpawner está asignada
         if (ballSpawner == null)
         {
-            Debug.LogError("No se asignó un BallSpawner. Asegúrate de configurarlo en el Inspector.");
             return;
         }
 
@@ -88,12 +87,7 @@ public class VelocityMeter : MonoBehaviour
             targetBall = ball.GetComponent<BallBehavior>();
             if (targetBall != null)
             {
-                Debug.Log("Pelota asignada correctamente al Velocímetro.");
                 targetAssigned = true; // Marca que el objetivo está asignado
-            }
-            else
-            {
-                Debug.LogError("El objeto asignado no tiene un componente BallBehavior.");
             }
         }
     }

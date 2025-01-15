@@ -3261,6 +3261,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806940033}
   m_CullTransparentMesh: 1
+--- !u!1 &827927925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6089258231214618257, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+  m_PrefabInstance: {fileID: 3855383865342742260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &956581618
 GameObject:
   m_ObjectHideFlags: 0
@@ -4661,12 +4666,28 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8854427722008490526, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
   m_PrefabInstance: {fileID: 3855383865342742260}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 827927925}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a24971c1422c77f4f83b9880a0933a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1444631850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827927925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20b96dc52ff80341aa0fc4a4aaff88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactPulseIntensity: 5
+  impactPulseDuration: 0.3
+  movementLightIntensity: 2
+  fadeSpeed: 2
 --- !u!1 &1465751363
 GameObject:
   m_ObjectHideFlags: 0
@@ -6087,7 +6108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 10
-  powerBehavior: {fileID: 11400000, guid: a2d00689bfd805e46b9dc6a8d59852cf, type: 2}
+  powerBehavior: {fileID: 11400000, guid: f1caf6534572b4e4ead40fa48b23d3c5, type: 2}
 --- !u!1 &2053162633
 GameObject:
   m_ObjectHideFlags: 0
@@ -6199,6 +6220,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6648886211109501755, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6089258231214618257, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
       propertyPath: m_Name
       value: Paddle
@@ -6266,11 +6291,14 @@ PrefabInstance:
     - target: {fileID: 8854427722008490526, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
       propertyPath: powerBehavior
       value: 
-      objectReference: {fileID: 11400000, guid: 4697c1d5fbb7b5243816c2d9469596f7, type: 2}
+      objectReference: {fileID: 11400000, guid: 50284b7001d8e6c479498bf1550a3a50, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6089258231214618257, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1444631850}
   m_SourcePrefab: {fileID: 100100000, guid: 9408e9981463f244cb15cd141df407ac, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

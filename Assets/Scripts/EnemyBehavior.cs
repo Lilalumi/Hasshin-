@@ -17,10 +17,6 @@ public class EnemyBehavior : MonoBehaviour
         {
             core = coreObject.transform;
         }
-        else
-        {
-            Debug.LogError("No se encontró un objeto con el tag 'Core' en la escena.");
-        }
     }
 
     void Update()
@@ -42,14 +38,8 @@ public class EnemyBehavior : MonoBehaviour
             {
                 Instantiate(gameOverPrefab, Vector3.zero, Quaternion.identity);
             }
-            else
-            {
-                Debug.LogError("No se asignó el prefab de Game Over en el inspector.");
-            }
 
-            Debug.Log("GAME OVER!");
             Time.timeScale = 0;
-
             StartCoroutine(ReturnToMainMenu());
         }
     }

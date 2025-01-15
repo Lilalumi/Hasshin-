@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        LeanTween.init(800); // Cambia 800 por el número que estimes necesario.
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

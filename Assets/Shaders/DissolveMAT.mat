@@ -61,5 +61,5 @@ Material:
     - _SpiralStrength: 1.7
     - _VerticalDissolve: 0
     m_Colors:
-    - _OutlineColor: {r: 1, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 1, g: 0.16159356, b: 0, a: 0}
   m_BuildTextureStacks: []

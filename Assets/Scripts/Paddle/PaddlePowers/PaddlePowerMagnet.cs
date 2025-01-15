@@ -4,9 +4,9 @@ using UnityEngine;
 public class PaddlePowerMagnet : PaddlePowerBase
 {
     public float magnetDuration = 3f; // Duración del efecto magnético
+
     public override void Activate(GameObject paddle)
     {
-        Debug.Log("Paddle Power Magnet activated!");
         paddle.GetComponent<MonoBehaviour>().StartCoroutine(MagnetEffect(paddle));
     }
 
@@ -30,7 +30,5 @@ public class PaddlePowerMagnet : PaddlePowerBase
 
         // Espera el tiempo de duración del magnetismo
         yield return new WaitForSeconds(magnetDuration);
-
-        Debug.Log("Paddle Power Magnet deactivated.");
     }
 }

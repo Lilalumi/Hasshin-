@@ -25,11 +25,6 @@ public class DataShardsEnemy : MonoBehaviour
         {
             // Agrega los Data Shards al contador global
             dataShardsController.AddDataShards(dataShardsOnDeath);
-            Debug.Log($"Enemy destruido. {dataShardsOnDeath} Data Shards otorgados.");
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró un DataShardsController en la escena. Asegúrate de que esté presente y activo.");
         }
 
         // Genera copias de los Data Shards
@@ -40,7 +35,6 @@ public class DataShardsEnemy : MonoBehaviour
     {
         if (dataShardPrefab == null)
         {
-            Debug.LogError("No se asignó un prefab de Data Shard en el inspector.");
             return;
         }
 
@@ -73,6 +67,4 @@ public class DataShardsEnemy : MonoBehaviour
             }
         }
     }
-
-
 }
