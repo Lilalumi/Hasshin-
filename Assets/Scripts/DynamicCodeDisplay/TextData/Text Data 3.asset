@@ -12,51 +12,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646c6b769fd7da5439215dc13e984256, type: 3}
   m_Name: Text Data 3
   m_EditorClassIdentifier: 
-  content: "######################\r\n# BALL SYSTEM - HASSHIN!\r\n# Code by: FutureArcade
-    Games\r\n# Language: Python\r\n# Theme: Physics-based gameplay mechanics\r\n######################\r\n\r\n#
-    Import essential libraries\r\nimport math\r\nimport random\r\n\r\n# Constants
-    for ball mechanics\r\nMAX_BALL_SPEED = 20.0\r\nMIN_BALL_SPEED = 5.0\r\nBALL_RADIUS
-    = 15.0\r\nARENA_BOUNDS = (800, 600)  # Width x Height\r\n\r\n# Ball colors and
-    effects\r\nBALL_TYPES = {\r\n    \"Standard\": {\"color\": \"#FFFFFF\", \"effect\":
-    \"None\"},\r\n    \"Fire\": {\"color\": \"#FF4500\", \"effect\": \"Burn Damage\"},\r\n   
-    \"Ice\": {\"color\": \"#00FFFF\", \"effect\": \"Slow Enemies\"},\r\n    \"Electric\":
-    {\"color\": \"#FFD700\", \"effect\": \"Chain Lightning\"}\r\n}\r\n\r\n# Ball
-    class definition\r\nclass Ball:\r\n    \"\"\"Represents a ball in the game with
-    various properties.\"\"\"\r\n    def __init__(self, ball_type=\"Standard\"):\r\n       
-    self.ball_type = ball_type\r\n        self.color = BALL_TYPES[ball_type][\"color\"]\r\n       
-    self.effect = BALL_TYPES[ball_type][\"effect\"]\r\n        self.position = [random.randint(100,
-    700), random.randint(100, 500)]\r\n        self.velocity = [random.uniform(-10,
-    10), random.uniform(-10, 10)]\r\n        self.speed = random.uniform(MIN_BALL_SPEED,
-    MAX_BALL_SPEED)\r\n\r\n    def move(self):\r\n        \"\"\"Update the ball's
-    position based on velocity and speed.\"\"\"\r\n        self.position[0] += self.velocity[0]
-    * self.speed * 0.1\r\n        self.position[1] += self.velocity[1] * self.speed
-    * 0.1\r\n        self.handle_bounds()\r\n\r\n    def handle_bounds(self):\r\n       
-    \"\"\"Bounce the ball off the arena bounds.\"\"\"\r\n        if self.position[0]
-    - BALL_RADIUS < 0 or self.position[0] + BALL_RADIUS > ARENA_BOUNDS[0]:\r\n           
-    self.velocity[0] = -self.velocity[0]\r\n        if self.position[1] - BALL_RADIUS
-    < 0 or self.position[1] + BALL_RADIUS > ARENA_BOUNDS[1]:\r\n            self.velocity[1]
-    = -self.velocity[1]\r\n\r\n    def apply_effect(self, target):\r\n        \"\"\"Apply
-    the ball's special effect to a target.\"\"\"\r\n        return f\"Applying {self.effect}
-    to {target}!\"\r\n\r\n    def display_status(self):\r\n        \"\"\"Display
-    ball properties.\"\"\"\r\n        return f\"Ball Type: {self.ball_type}, Position:
-    {self.position}, Effect: {self.effect}\"\r\n\r\n# BallManager to control multiple
-    balls\r\nclass BallManager:\r\n    \"\"\"Handles the creation and management
-    of multiple balls.\"\"\"\r\n    def __init__(self):\r\n        self.balls = []\r\n\r\n   
-    def spawn_ball(self, ball_type=\"Standard\"):\r\n        ball = Ball(ball_type)\r\n       
-    self.balls.append(ball)\r\n        return f\"Spawned a {ball_type} ball!\"\r\n\r\n   
-    def update_balls(self):\r\n        for ball in self.balls:\r\n            ball.move()\r\n\r\n   
-    def apply_effects(self, target):\r\n        results = []\r\n        for ball
-    in self.balls:\r\n            results.append(ball.apply_effect(target))\r\n       
-    return results\r\n\r\n    def display_all_status(self):\r\n        for ball in
-    self.balls:\r\n            print(ball.display_status())\r\n\r\n# System Initialization\r\ndef
-    initialize_ball_system():\r\n    \"\"\"Setup routine for the ball system.\"\"\"\r\n   
-    print(\"Initializing Ball System...\")\r\n    ball_manager = BallManager()\r\n\r\n   
-    # Spawn initial balls\r\n    print(ball_manager.spawn_ball(\"Fire\"))\r\n   
-    print(ball_manager.spawn_ball(\"Ice\"))\r\n    print(ball_manager.spawn_ball(\"Electric\"))\r\n\r\n   
-    # Display initial status\r\n    ball_manager.display_all_status()\r\n\r\n   
-    # Simulate ball updates\r\n    for _ in range(5):\r\n        ball_manager.update_balls()\r\n       
-    print(\"Updated ball positions:\")\r\n        ball_manager.display_all_status()\r\n\r\n   
-    # Apply effects to a dummy target\r\n    target = \"Enemy-01\"\r\n    print(\"Applying
-    effects to target:\")\r\n    effects = ball_manager.apply_effects(target)\r\n   
-    for effect in effects:\r\n        print(effect)\r\n\r\n# Main Routine\r\nif __name__
-    == \"__main__\":\r\n    initialize_ball_system()\r\n"
+  content: "using System.Collections;\r\nusing System.Collections.Generic;\r\nusing
+    UnityEngine;\r\nusing TMPro;\r\n#if UNITY_EDITOR\r\nusing UnityEditor;\r\n#endif\r\n\r\npublic
+    class DynamicCodeDisplay : MonoBehaviour\r\n{\r\n    [Header(\"UI Settings\")]\r\n   
+    [SerializeField] private TextMeshProUGUI textMeshPro; // Referencia al TextMeshPro
+    - Text (UI)\r\n    [SerializeField] private float typingSpeed = 0.05f; // Velocidad
+    de escritura (segundos entre caracteres)\r\n    [SerializeField] private float
+    delayBetweenTexts = 2f; // Tiempo de espera entre textos\r\n    [SerializeField]
+    private int maxLines = 10; // M\xE1ximo de l\xEDneas visibles en el texto\r\n\r\n   
+    [Header(\"Text Data Settings\")]\r\n    [SerializeField] private TextData[] textDataArray;
+    // Array de ScriptableObjects con los textos\r\n#if UNITY_EDITOR\r\n    [SerializeField]
+    private DefaultAsset folder; // Carpeta seleccionable desde el Inspector\r\n#endif\r\n\r\n   
+    private Queue<string> visibleLines = new Queue<string>(); // Cola para manejar
+    las l\xEDneas visibles\r\n    private System.Random random = new System.Random();
+    // Generador de n\xFAmeros aleatorios\r\n\r\n    void Start()\r\n    {\r\n       
+    if (textDataArray == null || textDataArray.Length == 0)\r\n        {\r\n           
+    Debug.LogError(\"No se asignaron TextData en el Inspector.\");\r\n           
+    return;\r\n        }\r\n\r\n        // Inicia la reproducci\xF3n din\xE1mica
+    de los textos\r\n        StartCoroutine(DisplayTexts());\r\n    }\r\n\r\n#if
+    UNITY_EDITOR\r\n    private void OnValidate()\r\n    {\r\n        if (folder
+    != null)\r\n        {\r\n            LoadTextDataFromFolder();\r\n        }\r\n   
+    }\r\n\r\n    private void LoadTextDataFromFolder()\r\n    {\r\n        string
+    folderPath = AssetDatabase.GetAssetPath(folder);\r\n\r\n        if (string.IsNullOrEmpty(folderPath))\r\n       
+    {\r\n            Debug.LogWarning(\"La carpeta seleccionada no es v\xE1lida.\");\r\n           
+    return;\r\n        }\r\n\r\n        // Busca todos los objetos TextData dentro
+    de la carpeta\r\n        string[] guids = AssetDatabase.FindAssets(\"t:TextData\",
+    new[] { folderPath });\r\n        List<TextData> loadedTextData = new List<TextData>();\r\n\r\n       
+    foreach (string guid in guids)\r\n        {\r\n            string assetPath =
+    AssetDatabase.GUIDToAssetPath(guid);\r\n            TextData textData = AssetDatabase.LoadAssetAtPath<TextData>(assetPath);\r\n           
+    if (textData != null)\r\n            {\r\n                loadedTextData.Add(textData);\r\n           
+    }\r\n        }\r\n\r\n        textDataArray = loadedTextData.ToArray(); // Actualiza
+    el array con los resultados\r\n    }\r\n#endif\r\n\r\n    private IEnumerator
+    DisplayTexts()\r\n    {\r\n        while (true)\r\n        {\r\n            //
+    Selecciona un TextData aleatorio\r\n            int randomIndex = random.Next(0,
+    textDataArray.Length);\r\n            string[] textLines = textDataArray[randomIndex].content.Split('\\n');
+    // Divide el texto en l\xEDneas\r\n\r\n            // Limpia las l\xEDneas visibles
+    antes de mostrar el siguiente texto\r\n            ClearVisibleLines();\r\n\r\n           
+    // Escribe l\xEDnea por l\xEDnea\r\n            foreach (string line in textLines)\r\n           
+    {\r\n                yield return StartCoroutine(TypeLine(line)); // Escribe
+    una l\xEDnea car\xE1cter por car\xE1cter\r\n            }\r\n\r\n           
+    // Espera antes de pasar al siguiente texto\r\n            yield return new WaitForSeconds(delayBetweenTexts);\r\n       
+    }\r\n    }\r\n\r\n    private IEnumerator TypeLine(string line)\r\n    {\r\n       
+    string currentLine = \"\"; // L\xEDnea actual que se est\xE1 escribiendo car\xE1cter
+    por car\xE1cter\r\n\r\n        foreach (char character in line)\r\n        {\r\n           
+    currentLine += character; // Agrega el car\xE1cter actual\r\n            UpdateVisibleLines(currentLine);
+    // Actualiza las l\xEDneas visibles\r\n            yield return new WaitForSeconds(typingSpeed);
+    // Espera seg\xFAn la velocidad de escritura\r\n        }\r\n\r\n        // Una
+    vez completada la l\xEDnea, agr\xE9gala definitivamente\r\n        AddLineToVisibleLines(currentLine);\r\n   
+    }\r\n\r\n    private void AddLineToVisibleLines(string line)\r\n    {\r\n       
+    // Agrega la l\xEDnea completa a la cola de l\xEDneas visibles\r\n        visibleLines.Enqueue(line);\r\n\r\n       
+    // Limita el n\xFAmero de l\xEDneas visibles\r\n        if (visibleLines.Count
+    > maxLines)\r\n        {\r\n            visibleLines.Dequeue(); // Elimina la
+    l\xEDnea m\xE1s antigua\r\n        }\r\n\r\n        UpdateText(); // Actualiza
+    el texto completo\r\n    }\r\n\r\n    private void UpdateVisibleLines(string
+    inProgressLine)\r\n    {\r\n        // Crea una lista temporal con las l\xEDneas
+    visibles m\xE1s la l\xEDnea en progreso\r\n        var tempLines = new List<string>(visibleLines);\r\n       
+    tempLines.Add(inProgressLine);\r\n\r\n        // Si excede el m\xE1ximo de l\xEDneas
+    visibles, elimina las m\xE1s antiguas\r\n        while (tempLines.Count > maxLines)\r\n       
+    {\r\n            tempLines.RemoveAt(0);\r\n        }\r\n\r\n        // Actualiza
+    el texto temporalmente\r\n        textMeshPro.text = string.Join(\"\\n\", tempLines);\r\n   
+    }\r\n\r\n    private void ClearVisibleLines()\r\n    {\r\n        visibleLines.Clear();
+    // Limpia la cola de l\xEDneas visibles\r\n        textMeshPro.text = \"\"; //
+    Limpia el texto en pantalla\r\n    }\r\n\r\n    private void UpdateText()\r\n   
+    {\r\n        // Actualiza el texto combinando las l\xEDneas visibles en la cola\r\n       
+    textMeshPro.text = string.Join(\"\\n\", visibleLines);\r\n    }\r\n}\r\n"

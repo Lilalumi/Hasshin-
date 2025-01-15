@@ -12,63 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646c6b769fd7da5439215dc13e984256, type: 3}
   m_Name: Text Data 1
   m_EditorClassIdentifier: 
-  content: "######################\r\n# ULTIMA AI DEFENSE SYSTEM INITIALIZATION\r\n#
-    Code by: FutureTech Corporation\r\n# Language: Python\r\n# Fusion Style: Cyberpunk
-    x Retrowave\r\n######################\r\n\r\n# Import essential libraries\r\nimport
-    time\r\nimport random\r\nimport hashlib\r\n\r\n# Constants for design aesthetics\r\nCYBER_NEON_COLORS
-    = [\"#FF007F\", \"#00FFFF\", \"#FFDD00\", \"#7F00FF\"]\r\nJAPANESE_SYSTEM_NAMES
-    = [\"\u30A6\u30EB\u30C6\u30A3\u30DE\", \"\u30B7\u30FC\u30EB\u30C9\", \"\u30A8\u30B0\u30BC\u30AD\u30E5\u30FC\u30BF\"]\r\n\r\n#
-    Functions for aesthetic console output\r\ndef neon_print(text, delay=0.03):\r\n   
-    \"\"\"Print text with a neon flicker effect.\"\"\"\r\n    for char in text:\r\n       
-    print(char, end=\"\", flush=True)\r\n        time.sleep(delay)\r\n    print()\r\n\r\ndef
-    system_banner():\r\n    \"\"\"Display the system banner with retro neon style.\"\"\"\r\n   
-    neon_print(\"Initializing ULTIMA AI DEFENSE SYSTEM\", 0.05)\r\n    neon_print(\"\u30B7\u30B9\u30C6\u30E0\u8D77\u52D5\u4E2D:
-    [\u30A6\u30EB\u30C6\u30A3\u30DE]\", 0.05)\r\n    neon_print(\"========================================\")\r\n\r\n#
-    Core modules for AI Defense\r\nclass NeuralNode:\r\n    \"\"\"Simulates a node
-    in the AI neural net.\"\"\"\r\n    def __init__(self, node_id):\r\n        self.node_id
-    = node_id\r\n        self.status = \"offline\"\r\n\r\n    def activate(self):\r\n       
-    self.status = \"online\"\r\n        return f\"Node-{self.node_id} is {self.status}!\"\r\n\r\nclass
-    VirusScanner:\r\n    \"\"\"Detect and neutralize viruses in the system.\"\"\"\r\n   
-    def __init__(self):\r\n        self.virus_signatures = [hashlib.md5(f\"VIRUS-{i}\".encode()).hexdigest()
-    for i in range(10)]\r\n\r\n    def scan(self, input_data):\r\n        scan_result
-    = hashlib.md5(input_data.encode()).hexdigest()\r\n        if scan_result in self.virus_signatures:\r\n           
-    return \"[ALERT]: Virus Detected! Neutralizing...\"\r\n        else:\r\n           
-    return \"[STATUS]: System Secure\"\r\n\r\nclass ShieldGenerator:\r\n    \"\"\"Manages
-    system shields and energy levels.\"\"\"\r\n    def __init__(self):\r\n       
-    self.energy_level = 100  # in percentage\r\n\r\n    def recharge(self):\r\n       
-    if self.energy_level < 100:\r\n            self.energy_level += random.randint(5,
-    15)\r\n            self.energy_level = min(self.energy_level, 100)\r\n       
-    return f\"Shield Energy: {self.energy_level}%\"\r\n\r\n    def activate(self):\r\n       
-    return \"[SHIELDS ONLINE]: \u9632\u5FA1\u30B7\u30B9\u30C6\u30E0\u8D77\u52D5\"\r\n\r\nclass
-    Firewall:\r\n    \"\"\"Protects the system from unauthorized access.\"\"\"\r\n   
-    def __init__(self):\r\n        self.status = \"inactive\"\r\n\r\n    def enable(self):\r\n       
-    self.status = \"active\"\r\n        return \"[FIREWALL]: Active and Monitoring\"\r\n\r\n   
-    def inspect_traffic(self, data):\r\n        suspicious_patterns = [\"INTRUSION\",
-    \"HACK\", \"EXPLOIT\"]\r\n        for pattern in suspicious_patterns:\r\n           
-    if pattern in data:\r\n                return f\"[WARNING]: Suspicious traffic
-    detected: {pattern}\"\r\n        return \"[FIREWALL]: Traffic clear\"\r\n\r\nclass
-    EmergencyProtocol:\r\n    \"\"\"Manages critical system responses during attacks.\"\"\"\r\n   
-    def __init__(self):\r\n        self.protocols = [\"LOCKDOWN\", \"ISOLATION\",
-    \"RECOVERY\"]\r\n\r\n    def initiate(self):\r\n        protocol = random.choice(self.protocols)\r\n       
-    return f\"[EMERGENCY PROTOCOL]: {protocol} activated!\"\r\n\r\n# System Initialization\r\ndef
-    initialize_system():\r\n    \"\"\"Core routine to initialize the AI system.\"\"\"\r\n   
-    neon_print(\"Engaging primary systems...\", 0.04)\r\n\r\n    # Load nodes\r\n   
-    nodes = [NeuralNode(i) for i in range(1, 6)]\r\n    for node in nodes:\r\n       
-    neon_print(node.activate(), 0.02)\r\n\r\n    # Initialize shield\r\n    shield
-    = ShieldGenerator()\r\n    neon_print(shield.activate(), 0.05)\r\n\r\n    # Scan
-    environment\r\n    scanner = VirusScanner()\r\n    for sample in [\"SYSTEM_BOOT\",
-    \"AI_CODE\", \"MALWARE_PROBE\"]:\r\n        neon_print(scanner.scan(sample),
-    0.04)\r\n\r\n    # Activate firewall\r\n    firewall = Firewall()\r\n    neon_print(firewall.enable(),
-    0.05)\r\n    for traffic in [\"NORMAL_REQUEST\", \"INTRUSION_ATTEMPT\", \"DATA_QUERY\"]:\r\n       
-    neon_print(firewall.inspect_traffic(traffic), 0.03)\r\n\r\n    # Emergency Protocol
-    Check\r\n    protocol = EmergencyProtocol()\r\n    neon_print(protocol.initiate(),
-    0.06)\r\n\r\n    # Shield Recharge Cycle\r\n    for _ in range(3):\r\n       
-    neon_print(shield.recharge(), 0.04)\r\n\r\n    neon_print(\"========================================\")\r\n   
-    neon_print(\"ULTIMA AI DEFENSE SYSTEM IS ONLINE\", 0.06)\r\n    neon_print(\"==============================\")\r\n\r\n#
-    Additional Debugging Tools\r\ndef debug_system_status():\r\n    \"\"\"Displays
-    debugging information for all system components.\"\"\"\r\n    debug_data = {\r\n       
-    \"Neural Nodes\": 5,\r\n        \"Active Shields\": \"100%\",\r\n        \"Firewall
-    Status\": \"Active\",\r\n        \"Emergency Protocols\": \"Loaded\"\r\n    }\r\n   
-    neon_print(\"--- SYSTEM DEBUG STATUS ---\", 0.05)\r\n    for key, value in debug_data.items():\r\n       
-    neon_print(f\"{key}: {value}\", 0.04)\r\n\r\n# Main Routine\r\nif __name__ ==
-    \"__main__\":\r\n    system_banner()\r\n    initialize_system()\r\n    debug_system_status()\r\n"
+  content: "using UnityEngine;\r\n\r\npublic class Health : MonoBehaviour\r\n{\r\n   
+    public int health = 100; // Salud inicial del objeto\r\n    public float effectDuration
+    = 1f; // Duraci\xF3n del efecto de muerte\r\n    public float sizeAugment = 2f;
+    // Velocidad de aumento de tama\xF1o durante el efecto\r\n\r\n    [Header(\"Visual
+    Effects\")]\r\n    public Material dissolveMaterial; // Material que controla
+    el efecto de disoluci\xF3n\r\n    public string dissolveAmountProperty = \"_DissolveAmount\";
+    // Nombre de la propiedad del material\r\n    public GameObject destructionEffectPrefab;
+    // Prefab de part\xEDculas para el efecto de destrucci\xF3n\r\n    public AnimationCurve
+    healthToDissolveCurve = AnimationCurve.Linear(0f, 0f, 1f, 1.1f); // Curva de
+    relaci\xF3n entre salud y disoluci\xF3n\r\n\r\n    private bool isDying = false;
+    // Bandera para evitar m\xFAltiples activaciones del efecto\r\n    private SpriteRenderer
+    spriteRenderer; // Referencia al SpriteRenderer\r\n    private Material instanceMaterial;
+    // Material instanciado para cada enemigo\r\n    private int maxHealth; // Salud
+    m\xE1xima inicial\r\n\r\n    private void Awake()\r\n    {\r\n        spriteRenderer
+    = GetComponent<SpriteRenderer>();\r\n\r\n        if (spriteRenderer != null)\r\n       
+    {\r\n            // Crear una instancia del material para evitar modificar el
+    original\r\n            instanceMaterial = Instantiate(dissolveMaterial);\r\n           
+    spriteRenderer.material = instanceMaterial;\r\n        }\r\n        else\r\n       
+    {\r\n            Debug.LogError(\"No se encontr\xF3 un SpriteRenderer en el objeto.\");\r\n       
+    }\r\n\r\n        maxHealth = health; // Almacena la salud m\xE1xima inicial\r\n       
+    UpdateDissolveEffect(); // Inicializa el efecto visual\r\n    }\r\n\r\n    public
+    void TakeDamage(int damage)\r\n    {\r\n        health -= damage;\r\n       
+    health = Mathf.Max(health, 0); // Evita valores negativos\r\n        UpdateDissolveEffect();\r\n\r\n       
+    if (health <= 0 && !isDying)\r\n        {\r\n            Die();\r\n        }\r\n   
+    }\r\n\r\n    private void UpdateDissolveEffect()\r\n    {\r\n        if (instanceMaterial
+    == null || !instanceMaterial.HasProperty(dissolveAmountProperty)) return;\r\n\r\n       
+    // Normaliza la salud entre 0 y 1\r\n        float normalizedHealth = (float)health
+    / maxHealth;\r\n\r\n        // Calcula el valor usando la curva\r\n        float
+    dissolveAmount = healthToDissolveCurve.Evaluate(1f - normalizedHealth);\r\n\r\n       
+    // Aplica el valor de forma progresiva\r\n        LeanTween.value(gameObject,
+    \r\n                        instanceMaterial.GetFloat(dissolveAmountProperty),
+    \r\n                        dissolveAmount, \r\n                        0.3f)\r\n           
+    .setOnUpdate((float value) => \r\n            {\r\n                instanceMaterial.SetFloat(dissolveAmountProperty,
+    value);\r\n            });\r\n    }\r\n\r\n    private void Die()\r\n    {\r\n       
+    isDying = true;\r\n\r\n        // Deshabilitar los colliders\r\n        Collider2D[]
+    colliders = GetComponents<Collider2D>();\r\n        foreach (Collider2D col in
+    colliders)\r\n        {\r\n            col.enabled = false;\r\n        }\r\n\r\n       
+    // Instanciar efecto de part\xEDculas si existe\r\n        if (destructionEffectPrefab
+    != null)\r\n        {\r\n            Instantiate(destructionEffectPrefab, transform.position,
+    Quaternion.identity);\r\n        }\r\n\r\n        // Iniciar la animaci\xF3n
+    de muerte\r\n        StartCoroutine(DeathEffect());\r\n    }\r\n\r\n    private
+    System.Collections.IEnumerator DeathEffect()\r\n    {\r\n        float elapsedTime
+    = 0f;\r\n        Vector3 initialScale = transform.localScale;\r\n\r\n       
+    while (elapsedTime < effectDuration)\r\n        {\r\n            elapsedTime
+    += Time.deltaTime;\r\n\r\n            // Aumentar el tama\xF1o durante la muerte\r\n           
+    float scaleMultiplier = 1f + (elapsedTime / effectDuration) * sizeAugment;\r\n           
+    transform.localScale = initialScale * scaleMultiplier;\r\n\r\n            yield
+    return null;\r\n        }\r\n\r\n        // Asegurarse de que el objeto sea completamente
+    destruido\r\n        Destroy(gameObject);\r\n    }\r\n}\r\n"

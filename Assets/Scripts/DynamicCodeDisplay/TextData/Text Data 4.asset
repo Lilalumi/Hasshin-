@@ -12,49 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646c6b769fd7da5439215dc13e984256, type: 3}
   m_Name: Text Data 4
   m_EditorClassIdentifier: 
-  content: "######################\r\n# RUNES OF ASCENSION SYSTEM\r\n# Code by: ArcaneCodex
-    Studios\r\n# Language: Python\r\n# Theme: Dark Fantasy Inspired by \"Elden Ring\"\r\n######################\r\n\r\n#
-    Import essential libraries\r\nimport time\r\nimport random\r\n\r\n# Constants
-    for rune mechanics\r\nMAX_RUNE_POWER = 100\r\nMIN_RUNE_POWER = 20\r\nRUNE_TYPES
-    = {\r\n    \"Blood\": {\"effect\": \"Hemorrhage\", \"color\": \"#8B0000\"},\r\n   
-    \"Ash\": {\"effect\": \"Burn\", \"color\": \"#696969\"},\r\n    \"Soul\": {\"effect\":
-    \"Weaken\", \"color\": \"#483D8B\"},\r\n    \"Shadow\": {\"effect\": \"Blindness\",
-    \"color\": \"#2F4F4F\"},\r\n    \"Frost\": {\"effect\": \"Freeze\", \"color\":
-    \"#4682B4\"}\r\n}\r\n\r\n# Functions for dark console output\r\ndef dark_print(text,
-    delay=0.06):\r\n    \"\"\"Print text with an ominous effect.\"\"\"\r\n    for
-    char in text:\r\n        print(char, end=\"\", flush=True)\r\n        time.sleep(delay)\r\n   
-    print()\r\n\r\ndef runes_banner():\r\n    \"\"\"Display the runes system banner.\"\"\"\r\n   
-    dark_print(\"~*~*~*~ Runes of Ascension Activated ~*~*~*~\")\r\n    dark_print(\"Channeling
-    the Lost Power of the Eldritch\", 0.08)\r\n    dark_print(\"========================================\")\r\n\r\n#
-    Core classes for runes\r\nclass Rune:\r\n    \"\"\"Represents a single rune with
-    unique properties.\"\"\"\r\n    def __init__(self, rune_type):\r\n        self.rune_type
-    = rune_type\r\n        self.effect = RUNE_TYPES[rune_type][\"effect\"]\r\n       
-    self.color = RUNE_TYPES[rune_type][\"color\"]\r\n        self.power = random.randint(MIN_RUNE_POWER,
-    MAX_RUNE_POWER)\r\n\r\n    def drain_power(self, amount):\r\n        if self.power
-    >= amount:\r\n            self.power -= amount\r\n            return f\"{self.rune_type}
-    Rune drained. Remaining Power: {self.power}\"\r\n        else:\r\n           
-    return \"[WARNING]: Rune is depleted!\"\r\n\r\n    def display_status(self):\r\n       
-    \"\"\"Display rune properties.\"\"\"\r\n        return f\"Rune Type: {self.rune_type},
-    Effect: {self.effect}, Power: {self.power}\"\r\n\r\nclass RuneForge:\r\n    \"\"\"Handles
-    the forging and activation of runes.\"\"\"\r\n    def __init__(self):\r\n       
-    self.runes = []\r\n\r\n    def forge_rune(self, rune_type):\r\n        if rune_type
-    in RUNE_TYPES:\r\n            new_rune = Rune(rune_type)\r\n            self.runes.append(new_rune)\r\n           
-    return f\"Forged a {rune_type} Rune!\"\r\n        else:\r\n            return
-    f\"[ERROR]: Invalid Rune Type: {rune_type}\"\r\n\r\n    def activate_rune(self,
-    target):\r\n        if self.runes:\r\n            rune = random.choice(self.runes)\r\n           
-    effect_applied = rune.drain_power(30)\r\n            return f\"Activated {rune.rune_type}
-    Rune on {target}: Effect - {rune.effect}\\n{effect_applied}\"\r\n        else:\r\n           
-    return \"[ERROR]: No runes available to activate.\"\r\n\r\n    def display_all_runes(self):\r\n       
-    \"\"\"Display all forged runes.\"\"\"\r\n        if not self.runes:\r\n           
-    dark_print(\"[INFO]: No runes currently forged.\")\r\n        for rune in self.runes:\r\n           
-    dark_print(rune.display_status())\r\n\r\n# System Initialization\r\ndef initialize_runes_system():\r\n   
-    \"\"\"Setup routine for the Runes of Ascension System.\"\"\"\r\n    dark_print(\"Summoning
-    the Forge of Eldritch Runes...\", 0.07)\r\n    forge = RuneForge()\r\n\r\n   
-    # Forge initial runes\r\n    dark_print(forge.forge_rune(\"Blood\"), 0.05)\r\n   
-    dark_print(forge.forge_rune(\"Frost\"), 0.05)\r\n    dark_print(forge.forge_rune(\"Shadow\"),
-    0.05)\r\n\r\n    # Display initial runes\r\n    dark_print(\"Displaying Forged
-    Runes:\", 0.06)\r\n    forge.display_all_runes()\r\n\r\n    # Activate a rune\r\n   
-    target = \"Corrupted Knight\"\r\n    dark_print(f\"Activating Runes against {target}:\",
-    0.06)\r\n    dark_print(forge.activate_rune(target), 0.07)\r\n\r\n    # Display
-    remaining runes\r\n    dark_print(\"Remaining Rune Status:\", 0.06)\r\n    forge.display_all_runes()\r\n\r\n#
-    Main Routine\r\nif __name__ == \"__main__\":\r\n    runes_banner()\r\n    initialize_runes_system()\r\n"
+  content: "using UnityEngine;\r\nusing TMPro;\r\nusing System.Collections;\r\n\r\npublic
+    class DataShardsUI : MonoBehaviour\r\n{\r\n    public DataShardsController dataShardsController;
+    // Referencia al controlador de Data Shards\r\n    public TextMeshProUGUI dataShardsText;
+    // Referencia al componente TextMeshPro\r\n\r\n    [Header(\"Animation Settings\")]\r\n   
+    public AnimationCurve speedCurve = AnimationCurve.Linear(0, 1, 1, 0); // Curva
+    de velocidad de la animaci\xF3n\r\n    public float totalAnimationDuration =
+    1f; // Duraci\xF3n total de la animaci\xF3n\r\n    public Color changeColor =
+    Color.yellow; // Color de transici\xF3n durante la animaci\xF3n\r\n    public
+    float colorDuration = 0.2f; // Duraci\xF3n del cambio de color\r\n\r\n    private
+    int lastDataShards = -1; // Almacena la cantidad previa de Data Shards\r\n   
+    private Color originalColor; // Almacena el color original del texto\r\n    private
+    Coroutine activeCoroutine; // Referencia a la animaci\xF3n activa\r\n\r\n   
+    void Start()\r\n    {\r\n        if (dataShardsController == null)\r\n       
+    {\r\n            Debug.LogError(\"DataShardsController no asignado en el inspector.\");\r\n       
+    }\r\n\r\n        if (dataShardsText == null)\r\n        {\r\n            Debug.LogError(\"TextMeshProUGUI
+    no asignado en el inspector.\");\r\n        }\r\n\r\n        // Almacena el color
+    original\r\n        originalColor = dataShardsText.color;\r\n\r\n        // Inicializa
+    el texto\r\n        lastDataShards = dataShardsController.GetDataShards();\r\n       
+    dataShardsText.text = $\"DATASHARDS: {lastDataShards:0000}\";\r\n    }\r\n\r\n   
+    void Update()\r\n    {\r\n        UpdateDataShardsUI();\r\n    }\r\n\r\n    void
+    UpdateDataShardsUI()\r\n    {\r\n        if (dataShardsController != null &&
+    dataShardsText != null)\r\n        {\r\n            int dataShards = dataShardsController.GetDataShards();\r\n\r\n           
+    if (dataShards != lastDataShards) // Solo actualiza si hay un cambio\r\n           
+    {\r\n                // Cancela la animaci\xF3n activa, si existe\r\n               
+    if (activeCoroutine != null)\r\n                {\r\n                    StopCoroutine(activeCoroutine);\r\n               
+    }\r\n\r\n                // Inicia una nueva animaci\xF3n\r\n               
+    activeCoroutine = StartCoroutine(AnimateNumberIncrement(lastDataShards, dataShards));\r\n               
+    lastDataShards = dataShards;\r\n            }\r\n        }\r\n    }\r\n\r\n   
+    private IEnumerator AnimateNumberIncrement(int oldNumber, int newNumber)\r\n   
+    {\r\n        int currentNumber = oldNumber;\r\n        float elapsedTime = 0f;\r\n       
+    float stepTime = totalAnimationDuration / Mathf.Max(1, newNumber - oldNumber);
+    // Tiempo por paso basado en los incrementos\r\n\r\n        while (currentNumber
+    < newNumber)\r\n        {\r\n            currentNumber++;\r\n\r\n           
+    // Actualiza el texto y aplica el efecto de color\r\n            UpdateTextWithColor(currentNumber);\r\n\r\n           
+    // Calcula el retraso basado en la curva\r\n            float progress = (float)(currentNumber
+    - oldNumber) / (newNumber - oldNumber); // Progreso normalizado\r\n           
+    float delay = speedCurve.Evaluate(progress) * stepTime;\r\n\r\n            elapsedTime
+    += delay;\r\n            yield return new WaitForSeconds(delay);\r\n        }\r\n\r\n       
+    // Asegura que el color vuelva al original\r\n        dataShardsText.color =
+    originalColor;\r\n        activeCoroutine = null; // Limpia la referencia al
+    completar\r\n    }\r\n\r\n    private void UpdateTextWithColor(int number)\r\n   
+    {\r\n        // Cambia temporalmente el color\r\n        LeanTween.value(gameObject,
+    UpdateTextColor, changeColor, originalColor, colorDuration);\r\n        dataShardsText.text
+    = $\"DATASHARDS: {number:0000}\";\r\n    }\r\n\r\n    private void UpdateTextColor(Color
+    color)\r\n    {\r\n        dataShardsText.color = color;\r\n    }\r\n}\r\n"

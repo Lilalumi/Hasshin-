@@ -12,55 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646c6b769fd7da5439215dc13e984256, type: 3}
   m_Name: Text Data 2
   m_EditorClassIdentifier: 
-  content: "######################\r\n# ALCHEMICAL TRANSMUTATION SYSTEM\r\n# Code
-    by: ArcaneSoft\r\n# Language: Python\r\n# Theme: Fantasy x Magical Realism\r\n######################\r\n\r\n#
-    Import essential libraries\r\nimport time\r\nimport random\r\n\r\n# Constants
-    for magical design\r\nelements = [\"Fire\", \"Water\", \"Earth\", \"Air\", \"Aether\"]\r\ngems
-    = [\"Ruby\", \"Sapphire\", \"Emerald\", \"Topaz\", \"Amethyst\"]\r\nalchemical_symbols
-    = [\"\u2609\", \"\u263D\", \"\u2640\", \"\u2642\", \"\u2643\"]\r\n\r\n# Functions
-    for magical console output\r\ndef magical_print(text, delay=0.05):\r\n    \"\"\"Print
-    text with an enchanted effect.\"\"\"\r\n    for char in text:\r\n        print(char,
-    end=\"\", flush=True)\r\n        time.sleep(delay)\r\n    print()\r\n\r\ndef
-    alchemy_banner():\r\n    \"\"\"Display the alchemy system banner.\"\"\"\r\n   
-    magical_print(\"~*~*~*~ Welcome to the Alchemical Transmutation System ~*~*~*~\",
-    0.06)\r\n    magical_print(\"System Ready for Elemental Synthesis\", 0.05)\r\n   
-    magical_print(\"========================================\")\r\n\r\n# Core modules
-    for Alchemy\r\nclass PhilosopherStone:\r\n    \"\"\"Represents the Philosopher's
-    Stone core for transmutation.\"\"\"\r\n    def __init__(self):\r\n        self.power
-    = 100  # Power in arbitrary units\r\n\r\n    def drain_power(self, amount):\r\n       
-    if self.power >= amount:\r\n            self.power -= amount\r\n            return
-    f\"Philosopher's Stone Power: {self.power}%\"\r\n        else:\r\n           
-    return \"[WARNING]: Power critically low!\"\r\n\r\n    def recharge(self):\r\n       
-    recharge_amount = random.randint(10, 25)\r\n        self.power = min(self.power
-    + recharge_amount, 100)\r\n        return f\"Philosopher's Stone recharged to
-    {self.power}%\"\r\n\r\nclass ElementSynthesizer:\r\n    \"\"\"Handles the synthesis
-    of elemental combinations.\"\"\"\r\n    def __init__(self):\r\n        self.recipes
-    = {\r\n            \"Steam\": [\"Fire\", \"Water\"],\r\n            \"Mud\":
-    [\"Earth\", \"Water\"],\r\n            \"Lightning\": [\"Air\", \"Fire\"],\r\n           
-    \"Crystal\": [\"Earth\", \"Aether\"]\r\n        }\r\n\r\n    def synthesize(self,
-    elements_combined):\r\n        for product, components in self.recipes.items():\r\n           
-    if set(elements_combined) == set(components):\r\n                return f\"[SUCCESS]:
-    Transmuted into {product}!\"\r\n        return \"[FAILURE]: No valid transmutation
-    found.\"\r\n\r\nclass GemInfuser:\r\n    \"\"\"Infuses gems with elemental power.\"\"\"\r\n   
-    def __init__(self):\r\n        self.gem_inventory = {gem: 0 for gem in gems}\r\n\r\n   
-    def infuse(self, gem, element):\r\n        if gem in self.gem_inventory:\r\n           
-    self.gem_inventory[gem] += 1\r\n            return f\"Infused {gem} with the
-    power of {element}!\"\r\n        else:\r\n            return f\"[ERROR]: {gem}
-    is not a valid gem.\"\r\n\r\n# System Initialization\r\ndef initialize_alchemy():\r\n   
-    \"\"\"Core routine to initialize the Alchemical System.\"\"\"\r\n    magical_print(\"Activating
-    the Philosopher's Stone...\", 0.05)\r\n\r\n    # Initialize Philosopher's Stone\r\n   
-    stone = PhilosopherStone()\r\n    magical_print(stone.drain_power(10), 0.05)\r\n\r\n   
-    # Synthesize elements\r\n    synthesizer = ElementSynthesizer()\r\n    magical_print(synthesizer.synthesize([\"Fire\",
-    \"Water\"]), 0.05)\r\n    magical_print(synthesizer.synthesize([\"Earth\", \"Air\"]),
-    0.05)\r\n\r\n    # Infuse gems\r\n    gem_infuser = GemInfuser()\r\n    magical_print(gem_infuser.infuse(\"Ruby\",
-    \"Fire\"), 0.04)\r\n    magical_print(gem_infuser.infuse(\"Amethyst\", \"Aether\"),
-    0.04)\r\n\r\n    # Recharge Philosopher's Stone\r\n    magical_print(stone.recharge(),
-    0.05)\r\n\r\n    magical_print(\"========================================\")\r\n   
-    magical_print(\"Alchemy System Ready for Use\", 0.06)\r\n    magical_print(\"==============================\")\r\n\r\n#
-    Additional Debugging Tools\r\ndef debug_alchemy_status():\r\n    \"\"\"Displays
-    debugging information for all alchemical components.\"\"\"\r\n    debug_data
-    = {\r\n        \"Philosopher's Stone Power\": \"100%\",\r\n        \"Elemental
-    Recipes\": 4,\r\n        \"Gems in Inventory\": 5\r\n    }\r\n    magical_print(\"---
-    ALCHEMY SYSTEM DEBUG STATUS ---\", 0.05)\r\n    for key, value in debug_data.items():\r\n       
-    magical_print(f\"{key}: {value}\", 0.04)\r\n\r\n# Main Routine\r\nif __name__
-    == \"__main__\":\r\n    alchemy_banner()\r\n    initialize_alchemy()\r\n    debug_alchemy_status()\r\n"
+  content: "using UnityEngine;\r\n\r\npublic class BallPower : MonoBehaviour\r\n{\r\n   
+    public float coolDown = 5f; // Tiempo de reutilizaci\xF3n entre usos del poder\r\n   
+    public BallPowerBase powerBehavior; // Referencia al ScriptableObject del poder\r\n\r\n   
+    private bool isOnCoolDown = false; // Indica si el poder est\xE1 en tiempo de
+    reutilizaci\xF3n\r\n    private float coolDownTimeRemaining = 0f; // Tiempo restante
+    del cooldown\r\n\r\n    void Update()\r\n    {\r\n        // Detecta la tecla
+    \"X\" para activar el poder\r\n        if (Input.GetKeyDown(KeyCode.X) && !isOnCoolDown)\r\n       
+    {\r\n            ActivatePower();\r\n        }\r\n    }\r\n\r\n    private void
+    ActivatePower()\r\n    {\r\n        if (powerBehavior != null)\r\n        {\r\n           
+    // Activa el poder a trav\xE9s del ScriptableObject\r\n            powerBehavior.Activate(gameObject);\r\n       
+    }\r\n        else\r\n        {\r\n            Debug.LogError(\"No se asign\xF3
+    un comportamiento de poder en el inspector.\");\r\n        }\r\n\r\n        //
+    Inicia el tiempo de reutilizaci\xF3n\r\n        StartCoroutine(CoolDownRoutine());\r\n   
+    }\r\n\r\n    private System.Collections.IEnumerator CoolDownRoutine()\r\n   
+    {\r\n        isOnCoolDown = true;\r\n        coolDownTimeRemaining = coolDown;\r\n\r\n       
+    while (coolDownTimeRemaining > 0)\r\n        {\r\n            coolDownTimeRemaining
+    -= Time.deltaTime;\r\n            yield return null;\r\n        }\r\n\r\n       
+    isOnCoolDown = false;\r\n    }\r\n\r\n    public bool IsOnCoolDown()\r\n    {\r\n       
+    return isOnCoolDown;\r\n    }\r\n\r\n    public float GetCoolDownTimeRemaining()\r\n   
+    {\r\n        return coolDownTimeRemaining;\r\n    }\r\n\r\n    // M\xE9todo para
+    obtener el \xEDcono del poder\r\n    public Sprite GetPowerIcon()\r\n    {\r\n       
+    return powerBehavior != null ? powerBehavior.powerIcon : null;\r\n    }\r\n}\r\n"
