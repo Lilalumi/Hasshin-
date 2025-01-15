@@ -19,6 +19,13 @@ public class PaddlePowerStretch : PaddlePowerBase
         Vector3 originalScale = paddle.transform.localScale;
         Vector3 stretchedScale = new Vector3(originalScale.x * stretchMultiplier, originalScale.y, originalScale.z);
 
+        // Actualiza el script PaddleBounceAnimation con la nueva escala
+        var bounceAnimation = paddle.GetComponent<PaddleBounceAnimation>();
+        if (bounceAnimation != null)
+        {
+            bounceAnimation.UpdateTargetScale(stretchedScale);
+        }
+
         // Fase 1: Estiramiento con LeanTween
         LeanTween.scale(paddle, stretchedScale, tweenDuration).setEaseOutBounce();
 
@@ -27,6 +34,12 @@ public class PaddlePowerStretch : PaddlePowerBase
 
         // Fase 2: Retorno al tamaño original con LeanTween
         LeanTween.scale(paddle, originalScale, tweenDuration).setEaseInBounce();
+
+        // Actualiza el script PaddleBounceAnimation con la escala original
+        if (bounceAnimation != null)
+        {
+            bounceAnimation.UpdateTargetScale(originalScale);
+        }
 
         Debug.Log("Paddle Power Stretch completed!");
     }

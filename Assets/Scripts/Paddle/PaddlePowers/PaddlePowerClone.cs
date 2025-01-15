@@ -7,6 +7,9 @@ public class PaddlePowerClone : PaddlePowerBase
     public Color cloneColor = Color.green; // Color de los clones
     public float tweenDuration = 0.5f; // Duración de los efectos de aparición y desaparición
     public int cloneCount = 1; // Número de clones
+
+    private GameObject[] clones; // Almacena referencias a los clones generados
+
     public override void Activate(GameObject paddle)
     {
         Debug.Log("Paddle Power Clone activated!");
@@ -26,6 +29,9 @@ public class PaddlePowerClone : PaddlePowerBase
 
         // Obtén el ángulo inicial del Paddle original respecto al núcleo
         float initialAngle = GetAngleFromCore(core.position, paddle.transform.position);
+
+        // Inicializa la lista de clones
+        clones = new GameObject[cloneCount];
 
         // Distribuir los clones uniformemente en la órbita
         float angleStep = 360f / (cloneCount + 1); // Espaciado angular entre clones
@@ -53,13 +59,31 @@ public class PaddlePowerClone : PaddlePowerBase
             PaddleCloneController cloneController = clone.AddComponent<PaddleCloneController>();
             cloneController.originalPaddle = paddle;
             cloneController.core = core;
+            cloneController.MarkAsClone();
 
-            // Destruye el clon después de la duración configurada con un efecto de desaparición
-            LeanTween.scale(clone, Vector3.zero, tweenDuration)
-                     .setEaseInBack()
-                     .setDelay(cloneDuration)
-                     .setOnComplete(() => Destroy(clone));
+            // Almacena el clon en la lista
+            clones[i - 1] = clone;
         }
+
+        // Destruye los clones después de la duración configurada
+        paddle.GetComponent<MonoBehaviour>().StartCoroutine(DestroyClonesAfterDuration());
+    }
+
+    private System.Collections.IEnumerator DestroyClonesAfterDuration()
+    {
+        yield return new WaitForSeconds(cloneDuration);
+
+        foreach (GameObject clone in clones)
+        {
+            if (clone != null)
+            {
+                // Añade efectos de desaparición antes de destruir el clon
+                LeanTween.scale(clone, Vector3.zero, tweenDuration).setEaseInBack()
+                    .setOnComplete(() => Destroy(clone));
+            }
+        }
+
+        Debug.Log("Paddle Power Clone completed!");
     }
 
     private float GetAngleFromCore(Vector3 corePosition, Vector3 paddlePosition)

@@ -7,6 +7,8 @@ public class PaddleCloneController : MonoBehaviour
     private float orbitRadius; // Radio de la órbita del clon
     private float initialOffsetAngle; // Ángulo inicial del clon respecto al Paddle original
 
+    public bool isClone { get; private set; } // Propiedad para identificar si es un clon
+
     void Start()
     {
         if (core == null || originalPaddle == null)
@@ -54,5 +56,13 @@ public class PaddleCloneController : MonoBehaviour
             float angleToFaceOutward = Mathf.Atan2(directionFromCore.y, directionFromCore.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angleToFaceOutward - 90f);
         }
+    }
+
+    /// <summary>
+    /// Marca este Paddle como un clon.
+    /// </summary>
+    public void MarkAsClone()
+    {
+        isClone = true; // Marca el objeto como un clon
     }
 }
