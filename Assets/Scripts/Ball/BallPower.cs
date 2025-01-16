@@ -10,10 +10,26 @@ public class BallPower : MonoBehaviour
 
     void Update()
     {
-        // Detecta la tecla "X" para activar el poder
-        if (Input.GetKeyDown(KeyCode.X) && !isOnCoolDown)
+        // Detecta la entrada según el modo de control activo
+        if (ShouldActivatePower() && !isOnCoolDown)
         {
             ActivatePower();
+        }
+    }
+
+    private bool ShouldActivatePower()
+    {
+        switch (ControlSettings.GetCurrentMode())
+        {
+            case ControlMode.Keyboard:
+                return Input.GetKeyDown(KeyCode.X); // Activar con tecla X
+            case ControlMode.Mouse:
+                return Input.GetMouseButtonDown(1); // Activar con clic derecho
+            case ControlMode.Gamepad:
+                // Aquí se puede implementar lógica para Gamepad en el futuro
+                return false;
+            default:
+                return false;
         }
     }
 

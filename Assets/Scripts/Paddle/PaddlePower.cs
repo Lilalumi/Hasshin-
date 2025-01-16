@@ -10,10 +10,26 @@ public class PaddlePower : MonoBehaviour
 
     void Update()
     {
-        // Detecta la tecla "Z" para activar el poder
-        if (Input.GetKeyDown(KeyCode.Z) && !isOnCoolDown)
+        // Detecta la entrada según el modo de control activo
+        if (ShouldActivatePower() && !isOnCoolDown)
         {
             ActivatePower();
+        }
+    }
+
+    private bool ShouldActivatePower()
+    {
+        switch (ControlSettings.GetCurrentMode())
+        {
+            case ControlMode.Keyboard:
+                return Input.GetKeyDown(KeyCode.Z);
+            case ControlMode.Mouse:
+                return Input.GetMouseButtonDown(0); // Clic izquierdo
+            case ControlMode.Gamepad:
+                // Puedes implementar lógica para Gamepad aquí en el futuro
+                return false;
+            default:
+                return false;
         }
     }
 
