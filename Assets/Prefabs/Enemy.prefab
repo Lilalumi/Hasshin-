@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95711ff33340fcb44932c62ff81b2985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.03
   gameOverPrefab: {fileID: 7213506498767116994, guid: aab8b679e7121c049956040df1255759, type: 3}
   mainMenuSceneName: MainMenu
 --- !u!114 &-4894978872234111828

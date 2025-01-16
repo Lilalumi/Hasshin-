@@ -2,31 +2,30 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour
 {
-    public float initialSpeed = 5f; // Velocidad inicial de la pelota
-    public float maxSpeed = 15f; // Velocidad máxima de la pelota
-    public float speedAugment = 1f; // Incremento de velocidad al golpear la paleta
-    public float accelerationRate = 0.1f; // Tasa de aceleración progresiva
-    public int hitsToRedirect = 5; // Golpes consecutivos necesarios para redirigir al núcleo
-    public int damage = 10; // Daño que la pelota inflige
-    public bool destroyOnCoreCollision = false; // Toggle para habilitar/deshabilitar el comportamiento de desinstanciar
+    public float initialSpeed = 5f;
+    public float maxSpeed = 15f;
+    public float speedAugment = 1f;
+    public float accelerationRate = 0.1f;
+    public int hitsToRedirect = 5;
+    public int damage = 10;
+    public bool destroyOnCoreCollision = false;
 
-    private float currentSpeed; // Velocidad actual de la pelota
-    private float targetSpeed; // Velocidad hacia la que se acelera progresivamente
+    public float currentSpeed { get; set; }
+    private float targetSpeed;
     private Rigidbody2D rb;
-    private Transform core; // Núcleo desde el cual la pelota se alejará
-    private int borderHitCount = 0; // Contador de golpes al Border
+    private Transform core;
+    private int borderHitCount = 0;
 
     [Header("Impact Effects")]
     public GameObject impactEffectEnemyPrefab;
     public GameObject impactEffectPaddlePrefab;
 
     [Header("Audio Clips")]
-    public AudioClip bleep02; // Sonido para colisión con Border
-    public AudioClip bleep03; // Sonido para colisión con Paddle
-    public AudioClip bleep04; // Sonido para colisión con Core
-    public AudioClip click04; // Sonido para colisión con Enemy
+    public AudioClip bleep02;
+    public AudioClip bleep03;
+    public AudioClip bleep04;
+    public AudioClip click04;
 
-    
     void Start()
     {
         GameObject coreObject = GameObject.FindGameObjectWithTag("Core");
@@ -131,5 +130,10 @@ public class BallBehavior : MonoBehaviour
 
         Vector2 directionToCore = (core.position - transform.position).normalized;
         rb.velocity = directionToCore * currentSpeed;
+    }
+
+    public void ReduceSpeed(float reductionRate)
+    {
+        targetSpeed = Mathf.Max(0, targetSpeed - reductionRate * Time.deltaTime);
     }
 }

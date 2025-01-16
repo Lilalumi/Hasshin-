@@ -5779,7 +5779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2615331da7a1310478b410f5f59d6865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  automaticControlSwitch: 1
+  automaticControlSwitch: 0
   manualControlMode: 0
 --- !u!1 &2031619649
 GameObject:
