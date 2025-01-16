@@ -55,10 +55,10 @@ MonoBehaviour:
   turnSpeed: 1
   initialFlightTime: 0.5
   spinSpeed: 1080
-  damage: 3
+  damage: 5
   lifetime: 5
   useAreaCollider: 1
-  trackClosestTarget: 1
+  trackClosestTarget: 0
   missileLight: {fileID: 894802769018803450}
   lightIntensity: 3
   impactEffectPrefab: {fileID: 8684634255837181260, guid: 797921af4347a804992ccedf329953ef, type: 3}
@@ -309,7 +309,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634668977633617600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

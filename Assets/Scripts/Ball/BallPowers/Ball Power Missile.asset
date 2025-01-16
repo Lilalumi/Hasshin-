@@ -15,6 +15,6 @@ MonoBehaviour:
   powerName: Missile
   powerIcon: {fileID: 21300000, guid: dc6329b35b7fcee4b92460dc2add5527, type: 3}
   missilePrefab: {fileID: 634668977633617600, guid: 2b3dc2096b5e02448a98adb144533d81, type: 3}
-  missileCount: 4
+  missileCount: 6
   initialFlightTime: 0.5
   initialSpeed: 1
