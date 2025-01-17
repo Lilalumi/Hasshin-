@@ -78,12 +78,26 @@ public class ControlSettings : MonoBehaviour
             CurrentControlMode = newMode;
             lastDetectedMode = newMode;
             lastInputTime = Time.time;
-            Debug.Log($"Modo de control cambiado a: {newMode}");
         }
     }
 
     public static ControlMode GetCurrentMode()
     {
         return CurrentControlMode;
+    }
+
+    // Métodos públicos para ser asignados a los botones en el MainMenu
+    public void SetKeyboardMode()
+    {
+        automaticControlSwitch = false;
+        manualControlMode = ControlMode.Keyboard;
+        ChangeControlMode(ControlMode.Keyboard);
+    }
+
+    public void SetMouseMode()
+    {
+        automaticControlSwitch = false;
+        manualControlMode = ControlMode.Mouse;
+        ChangeControlMode(ControlMode.Mouse);
     }
 }
