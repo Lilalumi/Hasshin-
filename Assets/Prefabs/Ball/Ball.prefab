@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5872604905399846962}
   - component: {fileID: 2947072697903287007}
   - component: {fileID: 6242021706366389152}
+  - component: {fileID: 1114854345587122616}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -454,3 +455,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1114854345587122616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461942488166412768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d25fb806e269a34ea1795aafb5020b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactThreshold: 5
+  spriteRenderer: {fileID: 8508706765774470699}
+  syncColor: {r: 0, g: 1, b: 1, a: 1}
+  pulseColor: {r: 1, g: 0, b: 1, a: 1}
+  pulseSpeed: 2
+  syncSound: {fileID: 8300000, guid: a22033fa3f860e042bbc0a04377232cc, type: 3}
+  particleTrailPrefab: {fileID: 8684634255837181260, guid: ca3b701d1563d06469b695d488032270, type: 3}
+  OnSyncActivated:
+    m_PersistentCalls:
+      m_Calls: []
