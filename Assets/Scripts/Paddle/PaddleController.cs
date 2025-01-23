@@ -8,6 +8,8 @@ public class PaddleController : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.IsPaused) return; // Detener el movimiento cuando el juego está pausado
+
         switch (ControlSettings.GetCurrentMode())
         {
             case ControlMode.Keyboard:

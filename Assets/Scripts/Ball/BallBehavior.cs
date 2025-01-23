@@ -52,6 +52,8 @@ public class BallBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (PauseManager.IsPaused) return; // Detener el movimiento cuando el juego está pausado
+
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelerationRate);
         rb.velocity = rb.velocity.normalized * currentSpeed;
     }

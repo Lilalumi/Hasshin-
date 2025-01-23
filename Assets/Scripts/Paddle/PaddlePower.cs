@@ -19,6 +19,12 @@ public class PaddlePower : MonoBehaviour
 
     private bool ShouldActivatePower()
     {
+        // No permitir activar el poder si el juego está en pausa
+        if (PauseManager.IsPaused) 
+        {
+            return false;
+        }
+
         switch (ControlSettings.GetCurrentMode())
         {
             case ControlMode.Keyboard:
@@ -56,7 +62,10 @@ public class PaddlePower : MonoBehaviour
 
         while (coolDownTimeRemaining > 0)
         {
-            coolDownTimeRemaining -= Time.deltaTime;
+            if (!PauseManager.IsPaused) // Solo reducir el cooldown si el juego no está pausado
+            {
+                coolDownTimeRemaining -= Time.deltaTime;
+            }
             yield return null;
         }
 

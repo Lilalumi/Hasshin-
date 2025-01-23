@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.IsPaused) return; // Detener la lógica de respawn
         if (spawningCompleted) return; // Detiene el spawner si se completaron las oleadas
 
         // Temporizador para iniciar la siguiente oleada

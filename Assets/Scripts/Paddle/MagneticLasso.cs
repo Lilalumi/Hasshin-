@@ -55,6 +55,8 @@ public class MagneticLasso : MonoBehaviour
 
     private void HandleKeyboardControl()
     {
+        if (PauseManager.IsPaused) return; // No ejecutar si está en pausa
+
         if (Input.GetKeyDown(activationKey))
         {
             ActivateLasso();
@@ -73,6 +75,8 @@ public class MagneticLasso : MonoBehaviour
 
     private void HandleMouseControl()
     {
+        if (PauseManager.IsPaused) return; // No ejecutar si está en pausa
+
         if (Input.GetMouseButtonDown(2)) // Botón del medio del mouse
         {
             ActivateLasso();
