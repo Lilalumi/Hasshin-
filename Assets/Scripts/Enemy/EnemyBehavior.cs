@@ -9,6 +9,9 @@ public class EnemyBehavior : MonoBehaviour
     private MovementPattern movementPattern;
     private Transform coreTransform; // Referencia al objeto Core
 
+    [Header("Basic Settings")]
+    public float damage; // Daño del enemigo (referenciable por otros scripts)
+
     [Header("Health Settings")]
     private float maxHealth; // Salud máxima inicial
     private float health; // Salud actual
@@ -52,7 +55,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (config == null)
         {
-            Debug.LogError("EnemyConfig no está asignado en EnemyBehavior.");
             return;
         }
 
@@ -60,7 +62,8 @@ public class EnemyBehavior : MonoBehaviour
         maxHealth = config.health;
         health = maxHealth;
 
-        Debug.Log($"Enemy {name} configurado con {maxHealth} de vida."); // Log para verificar vida inicial
+        // Configurar daño desde el EnemyConfig
+        damage = config.damageToCore;
 
         UpdateDissolveEffect(); // Inicializa el efecto visual
 
@@ -69,7 +72,6 @@ public class EnemyBehavior : MonoBehaviour
 
         if (movementPattern == null)
         {
-            Debug.LogError("MovementPattern no está asignado en el EnemyConfig.");
             return;
         }
 
@@ -84,9 +86,7 @@ public class EnemyBehavior : MonoBehaviour
             instanceMaterial = Instantiate(dissolveMaterial);
             spriteRenderer.sprite = config.enemySprite;
             UpdateDissolveEffect(); // Inicializa el efecto de salud visual
-            // Asignar el sprite al BackShadow
             AssignBackShadowSprite(spriteRenderer);
-            // Generar PolygonCollider2D basado en el sprite
             AddPolygonCollider(spriteRenderer);
         }
 
@@ -114,17 +114,14 @@ public class EnemyBehavior : MonoBehaviour
 
     private void InitializeMovement()
     {
-        // Buscar el objeto con el tag "Core"
         GameObject coreObject = GameObject.FindGameObjectWithTag("Core");
         if (coreObject == null)
         {
-            Debug.LogError("No se encontró un objeto con el tag 'Core'. Asegúrate de que exista en la escena.");
             return;
         }
 
         coreTransform = coreObject.transform;
 
-        // Configurar movimiento
         movementPattern = config?.movementPattern;
         targetPosition = transform.position;
         timeElapsed = 0f;
@@ -134,13 +131,11 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (isDying)
         {
-            Debug.Log($"Enemy {name} ya está muriendo. No puede recibir más daño.");
             return;
         }
 
         health -= damage;
-        health = Mathf.Max(health, 0f); // Evita valores negativos
-        Debug.Log($"Enemy {name} recibió {damage} de daño. Salud restante: {health}/{maxHealth}");
+        health = Mathf.Max(health, 0f);
 
         UpdateDissolveEffect();
 
@@ -179,17 +174,14 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (isDying) return;
 
-        Debug.Log($"Enemy {name} ha muerto.");
         isDying = true;
 
-        // Deshabilitar los colliders
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D col in colliders)
         {
             col.enabled = false;
         }
 
-        // Instanciar efecto de partículas si existe
         if (destructionEffectPrefab != null)
         {
             Instantiate(destructionEffectPrefab, transform.position, Quaternion.identity);
@@ -203,11 +195,11 @@ public class EnemyBehavior : MonoBehaviour
         PolygonCollider2D existingCollider = GetComponent<PolygonCollider2D>();
         if (existingCollider != null)
         {
-            Destroy(existingCollider); // Elimina cualquier collider existente
+            Destroy(existingCollider);
         }
 
         PolygonCollider2D polygonCollider = gameObject.AddComponent<PolygonCollider2D>();
-        polygonCollider.isTrigger = false; // Ajustar según las necesidades del gameplay
+        polygonCollider.isTrigger = false;
     }
 
     private void ConfigureCustomCollider()
@@ -217,10 +209,6 @@ public class EnemyBehavior : MonoBehaviour
         {
             boxCollider.offset = config.colliderOffset;
             boxCollider.size = config.colliderSize;
-        }
-        else
-        {
-            Debug.LogWarning("El collider personalizado requiere un BoxCollider2D.");
         }
     }
 
@@ -240,32 +228,26 @@ public class EnemyBehavior : MonoBehaviour
 
         Destroy(gameObject);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Depuración para identificar el objeto que colisiona
-        Debug.Log($"Enemy {name} colisionó con {collision.gameObject.name}");
-
+        // Método de colisión sin logs
     }
+
     private void AssignBackShadowSprite(SpriteRenderer parentSpriteRenderer)
     {
-        // Buscar el objeto hijo BackShadow
         Transform backShadowTransform = transform.Find("BackShadow");
         if (backShadowTransform == null)
         {
-            Debug.LogWarning("No se encontró el objeto hijo 'BackShadow' en el prefab del enemigo.");
             return;
         }
 
-        // Obtener el SpriteRenderer del objeto hijo
         SpriteRenderer backShadowRenderer = backShadowTransform.GetComponent<SpriteRenderer>();
         if (backShadowRenderer == null)
         {
-            Debug.LogWarning("El objeto 'BackShadow' no tiene un componente SpriteRenderer.");
             return;
         }
 
-        // Asignar el mismo sprite del padre
         backShadowRenderer.sprite = parentSpriteRenderer.sprite;
     }
 }
-

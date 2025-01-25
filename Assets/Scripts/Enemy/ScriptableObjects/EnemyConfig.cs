@@ -16,6 +16,9 @@ public class EnemyConfig : ScriptableObject
     [Tooltip("Tamaño visual del enemigo en la escena (ancho y alto).")]
     public Vector2 size = Vector2.one; // Tamaño del enemigo
 
+    [Tooltip("Daño que el enemigo causa al núcleo al alcanzarlo.")]
+    public float damageToCore = 10f; // Daño al núcleo
+
     [Tooltip("Patrón de movimiento del enemigo, definido como un ScriptableObject.")]
     public MovementPattern movementPattern; // Patrón de movimiento del enemigo
 

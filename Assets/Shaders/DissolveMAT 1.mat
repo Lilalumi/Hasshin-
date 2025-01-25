@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMAT
+  m_Name: DissolveMAT 1
   m_Shader: {fileID: -6465566751694194690, guid: 519ee2dcf48fe9444a54f2e8e663a5ff, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -54,11 +54,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DIssolveScale: 30
+    - _DIssolveScale: 17
     - _DissolveAmount: 0
-    - _OutlineThickness: 0.1
+    - _OutlineThickness: 1
     - _SpiralStrength: 1.7
     - _VerticalDissolve: 0
     m_Colors:
-    - _OutlineColor: {r: 1, g: 0.16159356, b: 0, a: 0}
+    - _OutlineColor: {r: 3.4415908, g: 0.5561389, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewEnemySpawnSetting
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6030931877034422116, guid: 747f85d50bf7d3248b92046c45ec00ba, type: 3}
-  maxWaves: 5
+  maxWaves: 20
   timeBetweenWaves: 2
   spawnRadius: 5
   minSpawnSpacing: 1.5

@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42731f913e3375d4398a99573b8253e7, type: 3}
-  m_Name: LinearMovementPattern
+  m_Script: {fileID: 11500000, guid: a357dbdef67c5064aa1c394734880d5d, type: 3}
+  m_Name: NewCoreData
   m_EditorClassIdentifier: 
-  speed: 4
-  duration: -1
-  isLooping: 1
-  movementType: 1
-  waypoints: []
+  coreHealth: 100
