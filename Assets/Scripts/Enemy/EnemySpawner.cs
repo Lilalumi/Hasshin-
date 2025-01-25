@@ -3,13 +3,8 @@ using System.Collections.Generic; // Para manejar listas de posiciones
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Prefab del enemigo a spawnear
-    public Transform border; // Objeto Border con la forma circular
-    public int enemiesPerWave = 5; // Cantidad de enemigos por oleada
-    public float timeBetweenWaves = 5f; // Tiempo entre oleadas en segundos
-    public float spawnRadius = 5f; // Radio de spawn alrededor de Border
-    public float minSpawnSpacing = 1.5f; // Espaciado mínimo entre enemigos
-    public int maxWaves = 5; // Cantidad máxima de oleadas
+    [Header("Spawn Settings")]
+    public EnemySpawnSetting spawnSettings; // Configuración de spawn basada en ScriptableObject
 
     private float waveTimer; // Temporizador para controlar las oleadas
     private int currentWave = 0; // Contador de oleadas completadas
@@ -18,9 +13,14 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        // Inicia la primera oleada inmediatamente al iniciar la escena
-        SpawnWave();
-        waveTimer = timeBetweenWaves; // Configura el temporizador para la siguiente oleada
+        if (spawnSettings == null)
+        {
+            Debug.LogError("No se asignó un EnemySpawnSetting al spawner.");
+            return;
+        }
+
+        SpawnWave(); // Inicia la primera oleada inmediatamente al iniciar la escena
+        waveTimer = spawnSettings.timeBetweenWaves; // Configura el temporizador para la siguiente oleada
     }
 
     void Update()
@@ -32,14 +32,14 @@ public class EnemySpawner : MonoBehaviour
         waveTimer -= Time.deltaTime;
         if (waveTimer <= 0)
         {
-            if (currentWave >= maxWaves)
+            if (currentWave >= spawnSettings.maxWaves)
             {
                 spawningCompleted = true; // Marca que las oleadas están completas
                 return;
             }
 
             SpawnWave();
-            waveTimer = timeBetweenWaves; // Reinicia el temporizador
+            waveTimer = spawnSettings.timeBetweenWaves; // Reinicia el temporizador
         }
     }
 
@@ -47,15 +47,18 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnedPositions.Clear(); // Limpia las posiciones de la oleada anterior
 
-        for (int i = 0; i < enemiesPerWave; i++)
+        foreach (var enemyEntry in spawnSettings.enemyWaveConfigs)
         {
-            SpawnEnemy();
+            for (int i = 0; i < enemyEntry.count; i++)
+            {
+                SpawnEnemy(enemyEntry.enemyConfig);
+            }
         }
 
         currentWave++; // Incrementa el contador de oleadas
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(EnemyConfig enemyConfig)
     {
         Vector2 spawnPosition;
 
@@ -65,11 +68,11 @@ public class EnemySpawner : MonoBehaviour
         {
             float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad; // Ángulo aleatorio en radianes
             Vector2 offset = new Vector2(
-                Mathf.Cos(angle) * spawnRadius,
-                Mathf.Sin(angle) * spawnRadius
+                Mathf.Cos(angle) * spawnSettings.spawnRadius,
+                Mathf.Sin(angle) * spawnSettings.spawnRadius
             );
 
-            spawnPosition = (Vector2)border.position + offset;
+            spawnPosition = (Vector2)transform.position + offset;
             attempts++;
         }
         while (!IsPositionValid(spawnPosition) && attempts < 100); // Máximo 100 intentos para evitar bucles infinitos
@@ -78,7 +81,18 @@ public class EnemySpawner : MonoBehaviour
         spawnedPositions.Add(spawnPosition);
 
         // Instancia el enemigo en la posición calculada
-        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemy = Instantiate(spawnSettings.enemyPrefab, spawnPosition, Quaternion.identity);
+
+        // Configura el objeto enemigo
+        EnemyBehavior enemyBehavior = enemy.GetComponent<EnemyBehavior>();
+        if (enemyBehavior != null)
+        {
+            enemyBehavior.SetConfig(enemyConfig);
+        }
+        else
+        {
+            Debug.LogWarning("El prefab del enemigo no tiene un componente EnemyBehavior.");
+        }
 
         // Configura el objeto enemigo como hijo del spawner
         enemy.transform.parent = this.transform;
@@ -88,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (Vector2 existingPosition in spawnedPositions)
         {
-            if (Vector2.Distance(existingPosition, position) < minSpawnSpacing)
+            if (Vector2.Distance(existingPosition, position) < spawnSettings.minSpawnSpacing)
             {
                 return false; // Si la distancia es menor al espaciado mínimo, la posición no es válida
             }
@@ -99,7 +113,6 @@ public class EnemySpawner : MonoBehaviour
 
     public bool HasPendingWaves()
     {
-        return currentWave < maxWaves; // Devuelve true si aún hay oleadas pendientes
+        return currentWave < spawnSettings.maxWaves; // Devuelve true si aún hay oleadas pendientes
     }
-
 }

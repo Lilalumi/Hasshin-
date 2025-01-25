@@ -66,6 +66,13 @@ public class BallBehavior : MonoBehaviour
         {
             PlaySound(click04);
             SpawnImpactEffect(impactEffectEnemyPrefab, contactPoint);
+
+            // Buscar el EnemyBehavior en lugar de Health
+            EnemyBehavior enemyBehavior = collision.gameObject.GetComponent<EnemyBehavior>();
+            if (enemyBehavior != null)
+            {
+                enemyBehavior.TakeDamage(damage); // Aplica daño al enemigo
+            }
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
@@ -101,12 +108,6 @@ public class BallBehavior : MonoBehaviour
         else
         {
             borderHitCount = 0;
-        }
-
-        Health targetHealth = collision.gameObject.GetComponent<Health>();
-        if (targetHealth != null)
-        {
-            targetHealth.TakeDamage(damage);
         }
     }
 

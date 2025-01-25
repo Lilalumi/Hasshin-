@@ -65,10 +65,10 @@ public class Pellet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Health enemyHealth = collision.gameObject.GetComponent<Health>();
-            if (enemyHealth != null)
+            EnemyBehavior enemyBehavior = collision.gameObject.GetComponent<EnemyBehavior>();
+            if (enemyBehavior != null)
             {
-                enemyHealth.TakeDamage(damage);
+                enemyBehavior.TakeDamage(damage); // Aplica daño al enemigo
             }
         }
 

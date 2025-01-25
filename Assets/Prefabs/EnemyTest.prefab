@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3288781497070110640}
   - component: {fileID: 5890357534786594771}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: BackShadow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 5661089769513185687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.0017, z: 0}
+  m_LocalScale: {x: 0.9961151, y: 1, z: 0.9961151}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6363157751834182356}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 1498942587
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 179a0fe482d378f4884a24044027aaaa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.039215688}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 2.02, y: 0.87}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6030931877034422116
@@ -94,13 +94,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6363157751834182356}
   - component: {fileID: 8569543573429199867}
-  - component: {fileID: -4894978872234111828}
   - component: {fileID: 4993867624094483367}
-  - component: {fileID: 1643314865525937414}
   - component: {fileID: 7062433733414700460}
-  - component: {fileID: 5869744413412350641}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: EnemyTest
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,56 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 0}
-  dissolveMaterial: {fileID: 0}
-  dissolveAmountProperty: _DissolveAmount
-  healthToDissolveCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1.1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1.1
-      inSlope: 1.1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  destructionEffectPrefab: {fileID: 0}
-  effectDuration: 1
-  sizeAugment: 2
-  dataShardsOnDeath: 5
-  dataShardPrefab: {fileID: 0}
-  floatRadius: 1
---- !u!114 &-4894978872234111828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6030931877034422116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36426c925816cb34ba25c519aa461adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 20
-  effectDuration: 0.1
-  sizeAugment: 1.05
   dissolveMaterial: {fileID: 2100000, guid: cb50b69a82e6ed9419798e468563cf5d, type: 2}
   dissolveAmountProperty: _DissolveAmount
-  destructionEffectPrefab: {fileID: 8684634255837181260, guid: 931e911bb3f80ef4c8bcc6613165ee85, type: 3}
   healthToDissolveCurve:
     serializedVersion: 2
     m_Curve:
@@ -198,8 +147,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1.0125122
-      value: 0.8062515
+      time: 1
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -209,6 +158,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  destructionEffectPrefab: {fileID: 8684634255837181260, guid: 931e911bb3f80ef4c8bcc6613165ee85, type: 3}
+  effectDuration: 0.1
+  sizeAugment: 1.05
+  dataShardsOnDeath: 5
+  dataShardPrefab: {fileID: 7474657057844744984, guid: 6b6d4f548f56116438b8cd3a0c064e0c, type: 3}
+  floatRadius: 0.5
 --- !u!212 &4993867624094483367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -250,7 +205,7 @@ SpriteRenderer:
   m_SortingLayerID: 1498942587
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 179a0fe482d378f4884a24044027aaaa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -258,54 +213,9 @@ SpriteRenderer:
   m_Size: {x: 2.02, y: 0.87}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1643314865525937414
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6030931877034422116}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0026210546, y: 0.08507404}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.02, y: 0.87}
-    newSize: {x: 2.02, y: 0.87}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.0172336, y: 0.6707925}
-  m_EdgeRadius: 0
 --- !u!50 &7062433733414700460
 Rigidbody2D:
   serializedVersion: 4
@@ -333,18 +243,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &5869744413412350641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6030931877034422116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81ce81b8093388549956b08aa111c18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataShardsOnDeath: 5
-  dataShardPrefab: {fileID: 7474657057844744984, guid: 6b6d4f548f56116438b8cd3a0c064e0c, type: 3}
-  floatRadius: 0.5

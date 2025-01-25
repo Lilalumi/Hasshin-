@@ -65,10 +65,10 @@ public class Asteroid : MonoBehaviour
             isContactingEnemy = true;
 
             // Aplica daño al enemigo
-            Health enemyHealth = collision.GetComponent<Health>();
-            if (enemyHealth != null)
+            EnemyBehavior enemyBehavior = collision.gameObject.GetComponent<EnemyBehavior>();
+            if (enemyBehavior != null)
             {
-                enemyHealth.TakeDamage(damage);
+                enemyBehavior.TakeDamage(damage); // Aplica daño al enemigo
             }
 
             // Activa el efecto de partículas

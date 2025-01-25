@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d188348f44c4384992d5df7e194c21d, type: 3}
+  m_Name: NewEnemySpawnSetting
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6030931877034422116, guid: 747f85d50bf7d3248b92046c45ec00ba, type: 3}
+  maxWaves: 5
+  timeBetweenWaves: 2
+  spawnRadius: 5
+  minSpawnSpacing: 1.5
+  enemyWaveConfigs:
+  - enemyConfig: {fileID: 11400000, guid: e23f6e5a1238d0342a34dca996648720, type: 2}
+    count: 1
