@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro; // Necesario para TextMeshPro
 
 public class Core : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class Core : MonoBehaviour
     [ColorUsage(true, true)] 
     public Color outlineColor2 = Color.yellow; // Segundo color HDR
     public float outlineColorFadeSpeed = 1f; // Velocidad del fade in-out del contorno
+
+    [Header("Health Display Settings")]
+    public TextMeshPro textMeshPro; // Referencia al TextMeshPro hijo
+    public float animationDuration = 0.3f; // Duración de la animación para cambiar valores de texto
 
     private Material instanceMaterial; // Material instanciado para el Core
     private SpriteRenderer spriteRenderer; // Referencia al SpriteRenderer
@@ -48,6 +53,7 @@ public class Core : MonoBehaviour
             spriteRenderer.material = instanceMaterial;
         }
 
+        UpdateHealthDisplay(currentHealth, instant: true); // Actualizar el texto inicial
         UpdateDissolveEffect(); // Actualizar el estado inicial del efecto
 
         // Iniciar el efecto de fade in-out del color del contorno
@@ -65,12 +71,14 @@ public class Core : MonoBehaviour
             if (enemy != null)
             {
                 // Reducir la salud actual del Core en base al daño del enemigo
+                float previousHealth = currentHealth;
                 currentHealth -= enemy.damage;
 
                 // Evitar que la salud actual del Core sea negativa
                 currentHealth = Mathf.Max(currentHealth, 0f);
 
-                // Actualizar el efecto de disolución
+                // Actualizar el efecto de disolución y el texto
+                UpdateHealthDisplay(previousHealth, instant: false);
                 UpdateDissolveEffect();
 
                 // Debug.Log para verificar el daño recibido y la salud restante
@@ -103,6 +111,29 @@ public class Core : MonoBehaviour
             {
                 instanceMaterial.SetFloat(dissolveAmountProperty, value);
             });
+    }
+
+    private void UpdateHealthDisplay(float previousHealth, bool instant)
+    {
+        if (textMeshPro == null) return;
+
+        // Calcula el porcentaje actual
+        float targetPercentage = Mathf.Clamp01(currentHealth / maxHealth) * 100f;
+
+        if (instant)
+        {
+            textMeshPro.text = $"{targetPercentage:000}%";
+        }
+        else
+        {
+            // Anima los cambios de texto usando LeanTween
+            LeanTween.value(gameObject, previousHealth, currentHealth, animationDuration)
+                .setOnUpdate((float value) =>
+                {
+                    float animatedPercentage = Mathf.Clamp01(value / maxHealth) * 100f;
+                    textMeshPro.text = $"{animatedPercentage:000}%";
+                });
+        }
     }
 
     private void StartOutlineColorFade()

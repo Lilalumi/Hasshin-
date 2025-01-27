@@ -29,7 +29,10 @@ public class IntroManager : MonoBehaviour
             skipIntroUI.SetActive(false); // Asegúrate de que el UI esté desactivado al inicio
         }
     }
-
+    void Awake()
+    {
+        LeanTween.init(3000); // Cambia 800 a un número más alto si lo necesitas.
+    }
     void Update()
     {
         // Detecta cualquier entrada de teclado para mostrar el UI

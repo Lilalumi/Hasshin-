@@ -15,5 +15,5 @@ MonoBehaviour:
   speed: 4
   duration: -1
   isLooping: 1
-  movementType: 1
+  movementType: 0
   waypoints: []

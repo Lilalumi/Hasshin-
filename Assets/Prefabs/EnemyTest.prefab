@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 0}
+  damage: 0
   dissolveMaterial: {fileID: 2100000, guid: cb50b69a82e6ed9419798e468563cf5d, type: 2}
   dissolveAmountProperty: _DissolveAmount
   healthToDissolveCurve:
@@ -147,8 +148,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.9963379
+      value: 0.85382843
       inSlope: 0
       outSlope: 0
       tangentMode: 0
