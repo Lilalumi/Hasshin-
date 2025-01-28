@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite1: {fileID: 21300000, guid: f960e1f6e967d604b8544dc1fd1acd22, type: 3}
   sprite1Size: {x: 1, y: 1}
   sprite1Offset: {x: 0, y: 0.08, z: 0}
-  secondarySpriteColor1: {r: 1, g: 0, b: 1, a: 0.7019608}
+  secondarySpriteColor1: {r: 1, g: 0, b: 1, a: 0.49019608}
   sprite1OrderInLayer: 2
   sprite2: {fileID: 21300000, guid: 23aae6b49d48f8d4d96dea307893bcd2, type: 3}
   sprite2Size: {x: 1, y: 1}

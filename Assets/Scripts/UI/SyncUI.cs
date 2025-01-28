@@ -3,35 +3,35 @@ using UnityEngine;
 public class SyncUI : MonoBehaviour
 {
     [Header("References")]
-    public BallSpawner ballSpawner; // Referencia al BallSpawner
-    public RectTransform syncBox; // Referencia al objeto SyncBox
-    public RectTransform syncR; // Referencia al objeto SyncR
-    public RectTransform syncB; // Referencia al objeto SyncB
+    public BallSpawner ballSpawner; 
+    public RectTransform syncBox; 
+    public RectTransform syncR; 
+    public RectTransform syncB; 
 
     [Header("Position Settings")]
-    public Vector2 syncRStartPosition; // Posición inicial de SyncR
-    public Vector2 syncBStartPosition; // Posición inicial de SyncB
-    public Vector2 syncTargetPosition; // Posición objetivo compartida por SyncR y SyncB
+    public Vector2 syncRStartPosition; 
+    public Vector2 syncBStartPosition; 
+    public Vector2 syncTargetPosition; 
 
     [Header("Color Settings")]
-    public Color syncRStartColor = Color.white; // Color inicial de SyncR
-    public Color syncREndColor = Color.green; // Color en modo SYNC de SyncR
-    public Color syncBStartColor = Color.white; // Color inicial de SyncB
-    public Color syncBEndColor = Color.green; // Color en modo SYNC de SyncB
-    public Color syncBoxBlinkColor1 = Color.white; // Primer color de parpadeo de SyncBox
-    public Color syncBoxBlinkColor2 = Color.cyan; // Segundo color de parpadeo de SyncBox
+    public Color syncRStartColor = Color.white; 
+    public Color syncREndColor = Color.green; 
+    public Color syncBStartColor = Color.white; 
+    public Color syncBEndColor = Color.green; 
+    public Color syncBoxBlinkColor1 = Color.white; 
+    public Color syncBoxBlinkColor2 = Color.cyan; 
 
     [Header("Settings")]
-    public float animationDuration = 0.5f; // Duración de la animación de movimiento
-    public float blinkSpeed = 0.5f; // Velocidad del parpadeo de SyncBox
+    public float animationDuration = 0.5f; 
+    public float blinkSpeed = 0.5f; 
 
-    private GameObject ballReference; // Referencia a la pelota
-    private SyncStatus syncStatus; // Referencia al script SyncStatus de la pelota
-    private int maxImpactsForSync = 3; // Cantidad máxima de impactos necesarios para SYNC
-    private Vector2 lastSyncRPosition; // Última posición de SyncR
-    private Vector2 lastSyncBPosition; // Última posición de SyncB
-    private bool isSyncActive = false; // Indica si se está en modo SYNC
-    private Color originalSyncBoxColor; // Color original de SyncBox
+    private GameObject ballReference; 
+    private SyncStatus syncStatus; 
+    private int maxImpactsForSync = 3; 
+    private Vector2 lastSyncRPosition; 
+    private Vector2 lastSyncBPosition; 
+    private bool isSyncActive = false; 
+    private Color originalSyncBoxColor; 
 
     private void Start()
     {
@@ -44,12 +44,7 @@ public class SyncUI : MonoBehaviour
         {
             ballSpawner.OnBallSpawned += AssignBall;
         }
-        else
-        {
-            Debug.LogError("No se encontró un BallSpawner en la escena.");
-        }
 
-        // Configurar posiciones y colores iniciales
         if (syncR != null)
         {
             syncR.anchoredPosition = syncRStartPosition;
@@ -66,7 +61,7 @@ public class SyncUI : MonoBehaviour
 
         if (syncBox != null)
         {
-            originalSyncBoxColor = syncBox.GetComponent<UnityEngine.UI.Image>().color; // Guarda el color original
+            originalSyncBoxColor = syncBox.GetComponent<UnityEngine.UI.Image>().color;
         }
     }
 
@@ -87,12 +82,7 @@ public class SyncUI : MonoBehaviour
 
             if (syncStatus != null)
             {
-                maxImpactsForSync = syncStatus.impactThreshold; // Asigna automáticamente el valor del umbral de Sync
-                Debug.Log("SyncStatus asignado correctamente al SyncUI.");
-            }
-            else
-            {
-                Debug.LogError("El objeto Ball no tiene un componente SyncStatus.");
+                maxImpactsForSync = syncStatus.impactThreshold;
             }
         }
     }
@@ -101,14 +91,11 @@ public class SyncUI : MonoBehaviour
     {
         if (syncStatus == null) return;
 
-        // Calcula el progreso actual como un valor entre 0 y 1
         float progress = Mathf.Clamp01((float)syncStatus.GetCurrentImpacts() / maxImpactsForSync);
 
-        // Calcula las nuevas posiciones para SyncR y SyncB
         Vector2 newSyncRPosition = Vector2.Lerp(syncRStartPosition, syncTargetPosition, progress);
         Vector2 newSyncBPosition = Vector2.Lerp(syncBStartPosition, syncTargetPosition, progress);
 
-        // Animar SyncR
         if (syncR != null && newSyncRPosition != lastSyncRPosition)
         {
             LeanTween.cancel(syncR.gameObject);
@@ -116,7 +103,6 @@ public class SyncUI : MonoBehaviour
             lastSyncRPosition = newSyncRPosition;
         }
 
-        // Animar SyncB
         if (syncB != null && newSyncBPosition != lastSyncBPosition)
         {
             LeanTween.cancel(syncB.gameObject);
@@ -124,13 +110,11 @@ public class SyncUI : MonoBehaviour
             lastSyncBPosition = newSyncBPosition;
         }
 
-        // Si alcanza el 100%, activa SYNC
         if (progress >= 1f && !isSyncActive)
         {
             ActivateSyncMode();
         }
 
-        // Si se sale del estado SYNC
         if (progress < 1f && isSyncActive)
         {
             DeactivateSyncMode();
@@ -141,13 +125,12 @@ public class SyncUI : MonoBehaviour
     {
         isSyncActive = true;
 
-        // Cambiar colores instantáneamente al entrar en modo SYNC
         if (syncR != null)
         {
             var syncRImage = syncR.GetComponent<UnityEngine.UI.Image>();
             if (syncRImage != null)
             {
-                syncRImage.color = syncREndColor; // Cambia al color de SYNC
+                syncRImage.color = syncREndColor;
             }
         }
 
@@ -156,11 +139,10 @@ public class SyncUI : MonoBehaviour
             var syncBImage = syncB.GetComponent<UnityEngine.UI.Image>();
             if (syncBImage != null)
             {
-                syncBImage.color = syncBEndColor; // Cambia al color de SYNC
+                syncBImage.color = syncBEndColor;
             }
         }
 
-        // Comienza el parpadeo de SyncBox
         if (syncBox != null)
         {
             LeanTween.cancel(syncBox.gameObject);
@@ -174,7 +156,6 @@ public class SyncUI : MonoBehaviour
     {
         isSyncActive = false;
 
-        // Restaurar los colores originales
         if (syncR != null)
         {
             var syncRImage = syncR.GetComponent<UnityEngine.UI.Image>();
@@ -193,7 +174,6 @@ public class SyncUI : MonoBehaviour
             }
         }
 
-        // Detiene el parpadeo y restaura el color original de SyncBox
         if (syncBox != null)
         {
             LeanTween.cancel(syncBox.gameObject);

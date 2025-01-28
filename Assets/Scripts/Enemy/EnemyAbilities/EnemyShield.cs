@@ -1,12 +1,12 @@
 using UnityEngine;
-using System.Collections; // Asegúrate de incluir esto para usar IEnumerator
+using System.Collections;
 
 public class EnemyShield : MonoBehaviour
 {
     private EnemyShieldAbility shieldConfig;
-    private bool isShieldActive = true; // Estado del escudo
-    private SpriteRenderer sprite2Renderer; // Referencia al SpriteRenderer del Sprite 2
-    private Coroutine blinkCoroutine; // Para manejar el blinkeo
+    private bool isShieldActive = true;
+    private SpriteRenderer sprite2Renderer;
+    private Coroutine blinkCoroutine;
 
     void Start()
     {
@@ -17,7 +17,6 @@ public class EnemyShield : MonoBehaviour
 
             if (sprite2Renderer != null)
             {
-                // Sprite 2 comienza completamente transparente
                 Color color = sprite2Renderer.color;
                 color.a = 0;
                 sprite2Renderer.color = color;
@@ -55,17 +54,13 @@ public class EnemyShield : MonoBehaviour
     public void DisableShield()
     {
         isShieldActive = false;
-        Debug.Log("Escudo desactivado.");
     }
 
     public void BreakShield()
     {
         if (!isShieldActive) return;
 
-        // Desactivar el escudo
         DisableShield();
-
-        // Destruir todos los hijos con SpriteRenderer (representan el escudo)
         foreach (Transform child in transform)
         {
             if (child.GetComponent<SpriteRenderer>() != null)
@@ -73,8 +68,6 @@ public class EnemyShield : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-
-        Debug.Log("¡Escudo destruido por Ball en SYNC!");
     }
 
     public void BlinkSprite2()
@@ -97,21 +90,16 @@ public class EnemyShield : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += 1f / frequency;
-
-            // Alternar la visibilidad
             isVisible = !isVisible;
             Color color = sprite2Renderer.color;
-            color.a = isVisible ? 1f : 0f; // Alternar entre opaco y transparente
+            color.a = isVisible ? 1f : 0f;
             sprite2Renderer.color = color;
-
             yield return new WaitForSeconds(1f / frequency);
         }
 
-        // Al finalizar el parpadeo, volver a alpha 0
         Color finalColor = sprite2Renderer.color;
         finalColor.a = 0f;
         sprite2Renderer.color = finalColor;
-
         blinkCoroutine = null;
     }
 }

@@ -3,18 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Paddle Powers/Clone Power")]
 public class PaddlePowerClone : PaddlePowerBase
 {
-    public float cloneDuration = 5f; // Duración de los clones
-    public Color cloneColor = Color.green; // Color de los clones
-    public float tweenDuration = 0.5f; // Duración de los efectos de aparición y desaparición
-    public int cloneCount = 1; // Número de clones
+    public float cloneDuration = 5f;
+    public Color cloneColor = Color.green;
+    public float tweenDuration = 0.5f;
+    public int cloneCount = 1;
 
-    private GameObject[] clones; // Almacena referencias a los clones generados
+    private GameObject[] clones;
 
     public override void Activate(GameObject paddle)
     {
-        Debug.Log("Paddle Power Clone activated!");
-
-        // Encuentra el núcleo
         PaddleController paddleController = paddle.GetComponent<PaddleController>();
         if (paddleController == null || paddleController.core == null)
         {
@@ -23,49 +20,31 @@ public class PaddlePowerClone : PaddlePowerBase
         }
 
         Transform core = paddleController.core;
-
-        // Calcula la distancia entre el núcleo y el Paddle original
         float radius = Vector3.Distance(core.position, paddle.transform.position);
-
-        // Obtén el ángulo inicial del Paddle original respecto al núcleo
         float initialAngle = GetAngleFromCore(core.position, paddle.transform.position);
 
-        // Inicializa la lista de clones
         clones = new GameObject[cloneCount];
-
-        // Distribuir los clones uniformemente en la órbita
-        float angleStep = 360f / (cloneCount + 1); // Espaciado angular entre clones
+        float angleStep = 360f / (cloneCount + 1);
 
         for (int i = 1; i <= cloneCount; i++)
         {
-            // Calcula el ángulo para el clon actual
-            float cloneAngle = initialAngle + (angleStep * i) % 360; // Asegura que el ángulo esté dentro de [0, 360]
-
-            // Calcula la posición del clon en la órbita
+            float cloneAngle = initialAngle + (angleStep * i) % 360;
             Vector3 clonePosition = GetPositionOnOrbit(core.position, cloneAngle, radius);
-
-            // Instancia el clon
             GameObject clone = Instantiate(paddle, clonePosition, paddle.transform.rotation);
 
-            // Configura el clon
             SetCloneVisuals(clone, paddle.transform.localScale);
-
-            // Agrega efectos de aparición
-            Vector3 originalScale = paddle.transform.localScale; // Escala del Paddle original
-            clone.transform.localScale = Vector3.zero; // Comienza invisible
+            Vector3 originalScale = paddle.transform.localScale;
+            clone.transform.localScale = Vector3.zero;
             LeanTween.scale(clone, originalScale, tweenDuration).setEaseOutBounce();
 
-            // Sincroniza el movimiento del clon con el original
             PaddleCloneController cloneController = clone.AddComponent<PaddleCloneController>();
             cloneController.originalPaddle = paddle;
             cloneController.core = core;
             cloneController.MarkAsClone();
 
-            // Almacena el clon en la lista
             clones[i - 1] = clone;
         }
 
-        // Destruye los clones después de la duración configurada
         paddle.GetComponent<MonoBehaviour>().StartCoroutine(DestroyClonesAfterDuration());
     }
 
@@ -77,25 +56,20 @@ public class PaddlePowerClone : PaddlePowerBase
         {
             if (clone != null)
             {
-                // Añade efectos de desaparición antes de destruir el clon
                 LeanTween.scale(clone, Vector3.zero, tweenDuration).setEaseInBack()
                     .setOnComplete(() => Destroy(clone));
             }
         }
-
-        Debug.Log("Paddle Power Clone completed!");
     }
 
     private float GetAngleFromCore(Vector3 corePosition, Vector3 paddlePosition)
     {
-        // Calcula el ángulo actual del Paddle respecto al núcleo
         Vector3 direction = paddlePosition - corePosition;
         return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     }
 
     private Vector3 GetPositionOnOrbit(Vector3 corePosition, float angle, float radius)
     {
-        // Calcula una posición en la órbita del núcleo
         float radian = angle * Mathf.Deg2Rad;
         return new Vector3(
             corePosition.x + Mathf.Cos(radian) * radius,
@@ -106,24 +80,15 @@ public class PaddlePowerClone : PaddlePowerBase
 
     private void SetCloneVisuals(GameObject clone, Vector3 originalScale)
     {
-        // Cambia el color del clon
         SpriteRenderer spriteRenderer = clone.GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             spriteRenderer.color = cloneColor;
-
-            // Espeja la imagen del Paddle
             spriteRenderer.flipX = true;
         }
 
-        // Desactiva el componente PaddlePower para que los clones no puedan activar poderes
         PaddlePower paddlePower = clone.GetComponent<PaddlePower>();
-        if (paddlePower != null)
-        {
-            paddlePower.enabled = false;
-        }
-
-        // Asegura que la escala inicial del clon coincida con la del original
+        if (paddlePower != null) paddlePower.enabled = false;
         clone.transform.localScale = originalScale;
     }
 }

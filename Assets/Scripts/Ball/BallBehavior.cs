@@ -52,7 +52,7 @@ public class BallBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (PauseManager.IsPaused) return; // Detener el movimiento cuando el juego está pausado
+        if (PauseManager.IsPaused) return;
 
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelerationRate);
         rb.velocity = rb.velocity.normalized * currentSpeed;
@@ -76,8 +76,7 @@ public class BallBehavior : MonoBehaviour
                 }
                 else
                 {
-                    enemyShield.BlinkSprite2(); // Activar el blinkeo del Sprite 2
-                    Debug.Log("El escudo bloqueó el daño y Sprite 2 está parpadeando.");
+                    enemyShield.BlinkSprite2();
                     return;
                 }
             }
@@ -86,10 +85,7 @@ public class BallBehavior : MonoBehaviour
             SpawnImpactEffect(impactEffectEnemyPrefab, contactPoint);
 
             EnemyBehavior enemyBehavior = collision.gameObject.GetComponent<EnemyBehavior>();
-            if (enemyBehavior != null)
-            {
-                enemyBehavior.TakeDamage(damage);
-            }
+            if (enemyBehavior != null) enemyBehavior.TakeDamage(damage);
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
@@ -102,14 +98,8 @@ public class BallBehavior : MonoBehaviour
         else if (collision.gameObject.CompareTag("Core"))
         {
             PlaySound(bleep04);
-
-            if (destroyOnCoreCollision)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            targetSpeed = initialSpeed;
+            if (destroyOnCoreCollision) Destroy(gameObject);
+            else targetSpeed = initialSpeed;
         }
         else if (collision.gameObject.CompareTag("Border"))
         {
@@ -128,29 +118,19 @@ public class BallBehavior : MonoBehaviour
         }
     }
 
-
-
-
     private void PlaySound(AudioClip clip, float volume = 1f)
     {
-        if (clip != null)
-        {
-            SoundManager.Instance.PlaySFX(clip, volume);
-        }
+        if (clip != null) SoundManager.Instance.PlaySFX(clip, volume);
     }
 
     private void SpawnImpactEffect(GameObject prefab, Vector3 position)
     {
-        if (prefab != null)
-        {
-            Instantiate(prefab, position, Quaternion.identity);
-        }
+        if (prefab != null) Instantiate(prefab, position, Quaternion.identity);
     }
 
     private void RedirectToCore()
     {
         if (core == null) return;
-
         Vector2 directionToCore = (core.position - transform.position).normalized;
         rb.velocity = directionToCore * currentSpeed;
     }
