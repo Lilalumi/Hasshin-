@@ -98,6 +98,17 @@ public class EnemyBehavior : MonoBehaviour
         {
             ConfigureCustomCollider();
         }
+        // Configurar habilidades especiales
+        if (config.hasAbilities && config.abilities != null)
+        {
+            foreach (ScriptableObject ability in config.abilities)
+            {
+                if (ability is EnemyShieldAbility shieldAbility)
+                {
+                    shieldAbility.ActivateShield(gameObject);
+                }
+            }
+        }
     }
 
     private void InitializeHealth()

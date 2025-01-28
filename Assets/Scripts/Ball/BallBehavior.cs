@@ -64,14 +64,31 @@ public class BallBehavior : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            EnemyShield enemyShield = collision.gameObject.GetComponent<EnemyShield>();
+            SyncStatus syncStatus = GetComponent<SyncStatus>();
+
+            if (enemyShield != null && enemyShield.IsShieldActive())
+            {
+                if (syncStatus != null && syncStatus.IsSyncActive())
+                {
+                    enemyShield.BreakShield();
+                    return;
+                }
+                else
+                {
+                    enemyShield.BlinkSprite2(); // Activar el blinkeo del Sprite 2
+                    Debug.Log("El escudo bloqueó el daño y Sprite 2 está parpadeando.");
+                    return;
+                }
+            }
+
             PlaySound(click04);
             SpawnImpactEffect(impactEffectEnemyPrefab, contactPoint);
 
-            // Buscar el EnemyBehavior en lugar de Health
             EnemyBehavior enemyBehavior = collision.gameObject.GetComponent<EnemyBehavior>();
             if (enemyBehavior != null)
             {
-                enemyBehavior.TakeDamage(damage); // Aplica daño al enemigo
+                enemyBehavior.TakeDamage(damage);
             }
         }
         else if (collision.gameObject.CompareTag("Paddle"))
@@ -110,6 +127,9 @@ public class BallBehavior : MonoBehaviour
             borderHitCount = 0;
         }
     }
+
+
+
 
     private void PlaySound(AudioClip clip, float volume = 1f)
     {
