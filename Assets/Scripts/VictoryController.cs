@@ -50,15 +50,10 @@ public class VictoryController : MonoBehaviour
     private void TriggerVictory()
     {
         victoryTriggered = true;
-        Debug.Log("¡Victoria! No quedan más enemigos.");
 
         if (victoryPrefab != null)
         {
             Instantiate(victoryPrefab, Vector3.zero, Quaternion.identity);
-        }
-        else
-        {
-            Debug.LogError("No se asignó el prefab de Victoria en el inspector.");
         }
 
         Time.timeScale = 0;
@@ -69,15 +64,10 @@ public class VictoryController : MonoBehaviour
     private void TriggerGameOver()
     {
         gameOverTriggered = true;
-        Debug.Log("¡Game Over! El Core ha sido destruido.");
 
         if (gameOverPrefab != null)
         {
             Instantiate(gameOverPrefab, Vector3.zero, Quaternion.identity);
-        }
-        else
-        {
-            Debug.LogError("No se asignó el prefab de Game Over en el inspector.");
         }
 
         Time.timeScale = 0;

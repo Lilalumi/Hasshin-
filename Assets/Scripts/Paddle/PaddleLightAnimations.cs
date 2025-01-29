@@ -49,9 +49,13 @@ public class PaddleLightAnimations : MonoBehaviour
             targetIntensity = 0f; // Apaga la luz al detenerse
         }
 
+        // Almacenar el valor de la última entrada de movimiento
+        currentInput = input;
+
         // Transición suave hacia la intensidad objetivo
         paddleLight.intensity = Mathf.Lerp(paddleLight.intensity, targetIntensity, Time.deltaTime * fadeSpeed);
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {

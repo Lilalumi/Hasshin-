@@ -37,10 +37,6 @@ public class Core : MonoBehaviour
         {
             maxHealth = coreData.coreHealth;
         }
-        else
-        {
-            Debug.LogWarning("CoreData no asignado. Usando valor predeterminado para maxHealth.");
-        }
 
         // Configurar la salud actual al valor máximo
         currentHealth = maxHealth;
@@ -81,16 +77,8 @@ public class Core : MonoBehaviour
                 UpdateHealthDisplay(previousHealth, instant: false);
                 UpdateDissolveEffect();
 
-                // Debug.Log para verificar el daño recibido y la salud restante
-                Debug.Log($"El Core recibió {enemy.damage} de daño. Salud restante: {currentHealth}/{maxHealth}");
-
                 // Destruir al enemigo después del impacto
                 Destroy(collision.gameObject);
-            }
-            else
-            {
-                // Debug.Log si el objeto con el tag "Enemy" no tiene EnemyBehavior
-                Debug.LogWarning("El objeto con tag 'Enemy' no tiene el componente EnemyBehavior.");
             }
         }
     }

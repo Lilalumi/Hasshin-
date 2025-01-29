@@ -59,7 +59,7 @@ public class Asteroid : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !isContactingEnemy)
+        if (collision.CompareTag("Enemy") && !isContactingEnemy && canDealDamage)
         {
             // Marca que está en contacto con un enemigo
             isContactingEnemy = true;
@@ -70,6 +70,9 @@ public class Asteroid : MonoBehaviour
             {
                 enemyBehavior.TakeDamage(damage); // Aplica daño al enemigo
             }
+
+            // Desactiva la capacidad de hacer daño nuevamente
+            canDealDamage = false;
 
             // Activa el efecto de partículas
             PlayImpactParticles();
@@ -88,6 +91,9 @@ public class Asteroid : MonoBehaviour
         {
             // Resetea el estado al salir del contacto
             isContactingEnemy = false;
+
+            // Reinicia la capacidad de hacer daño nuevamente después de un tiempo
+            Invoke(nameof(ResetDamage), 1f);
         }
     }
 
@@ -109,5 +115,10 @@ public class Asteroid : MonoBehaviour
             yield return new WaitForSeconds(flashDuration);
             asteroidLight.intensity = glowIntensity;
         }
+    }
+
+    private void ResetDamage()
+    {
+        canDealDamage = true;
     }
 }

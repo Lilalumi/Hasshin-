@@ -14,8 +14,7 @@ public class BallPowerMissile : BallPowerBase
         GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
         if (balls.Length == 0)
         {
-            Debug.LogWarning("No hay pelotas activas para lanzar el misil.");
-            return;
+            return; // No hay pelotas activas para lanzar el misil.
         }
 
         // Instancia los misiles desde cada pelota
@@ -29,8 +28,7 @@ public class BallPowerMissile : BallPowerBase
     {
         if (missilePrefab == null)
         {
-            Debug.LogError("No se asignó un prefab de misil en el ScriptableObject.");
-            return;
+            return; // No se asignó un prefab de misil en el ScriptableObject.
         }
 
         for (int i = 0; i < missileCount; i++)

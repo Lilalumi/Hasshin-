@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: NewEnemySpawnSetting
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6030931877034422116, guid: 747f85d50bf7d3248b92046c45ec00ba, type: 3}
-  maxWaves: 20
-  timeBetweenWaves: 5
+  maxWaves: 10
+  timeBetweenWaves: 10
   spawnRadius: 5
   minSpawnSpacing: 1.5
   enemyWaveConfigs:
   - enemyConfig: {fileID: 11400000, guid: e23f6e5a1238d0342a34dca996648720, type: 2}
+    count: 3
+  - enemyConfig: {fileID: 11400000, guid: b344a5b29ca511a4f9fa0c8a04d2b1cb, type: 2}
+    count: 1
+  - enemyConfig: {fileID: 11400000, guid: 82d16f3df00a37b47ac815a99d8b759d, type: 2}
     count: 1

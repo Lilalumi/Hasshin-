@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ImpactEffectController : MonoBehaviour
 {
-    private ParticleSystem particleSystem;
+    private new ParticleSystem particleSystem; // Usar 'new' para ocultar el miembro heredado
     private Light light2D;
 
     void Awake()

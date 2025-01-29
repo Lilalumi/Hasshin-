@@ -83,7 +83,6 @@ public class SyncStatus : MonoBehaviour
     private void ActivateSync()
     {
         isSyncActive = true;
-        Debug.Log("SYNC activated!");
 
         // Activar partículas
         if (particleTrailPrefab != null)
@@ -105,7 +104,6 @@ public class SyncStatus : MonoBehaviour
     {
         isSyncActive = false;
         currentImpacts = 0;
-        Debug.Log("SYNC reset.");
 
         // Desactivar partículas
         if (activeParticleTrail != null)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42731f913e3375d4398a99573b8253e7, type: 3}
   m_Name: LinearMovementPattern
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 1.5
   duration: -1
   isLooping: 1
   movementType: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79c79ce4da83f7c42aa46d699d3f5afa, type: 3}
-  m_Name: NewEnemyConfig
+  m_Name: NewEnemyConfig_Shield
   m_EditorClassIdentifier: 
   enemyName: Enemy Type 1
   enemySprite: {fileID: 21300000, guid: 179a0fe482d378f4884a24044027aaaa, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   useCustomCollider: 0
   colliderOffset: {x: 0, y: 0}
   colliderSize: {x: 1, y: 1}
-  hasAbilities: 0
+  hasAbilities: 1
   abilities:
   - {fileID: 11400000, guid: 36b83023c7e3ecb48aa7f13e6b3b2c22, type: 2}
   deathEffectPrefab: {fileID: 8684634255837181260, guid: 931e911bb3f80ef4c8bcc6613165ee85, type: 3}

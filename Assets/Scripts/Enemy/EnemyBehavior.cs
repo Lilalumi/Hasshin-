@@ -181,9 +181,14 @@ public class EnemyBehavior : MonoBehaviour
             });
     }
 
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
+
     private void Die()
     {
-        if (isDying) return;
+        if (isDying || isQuitting) return; // Evitar efectos si se está cerrando la aplicación
 
         isDying = true;
 
